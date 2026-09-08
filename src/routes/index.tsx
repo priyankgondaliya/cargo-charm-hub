@@ -47,6 +47,55 @@ const services = [
   },
 ];
 
+const industries = [
+  "Retail & e-commerce",
+  "Automotive parts",
+  "Pharma & cold chain",
+  "Food & beverage",
+  "Electronics",
+  "Industrial & machinery",
+];
+
+const testimonials = [
+  {
+    quote:
+      "Velora cut our Europe-bound transit times by two days and the live tracking ended the 'where is my pallet' phone calls.",
+    name: "Sarah Whitfield",
+    role: "Supply Chain Lead, Norbrook Retail",
+  },
+  {
+    quote:
+      "Rates land the same day, the driver turns up in the slot, and the POD is in my inbox before I've finished lunch.",
+    name: "Daniel Okafor",
+    role: "Operations Manager, Atlas Components",
+  },
+  {
+    quote:
+      "Cold-chain across three countries with zero temperature excursions in 18 months. The audit trail is impeccable.",
+    name: "Dr. Priya Menon",
+    role: "Head of Logistics, HelixPharma",
+  },
+];
+
+const faqs = [
+  {
+    q: "How fast do I get a quote?",
+    a: "The same working day. Send the lane, pallet count and date window and our desk returns a rate in GBP with everything included.",
+  },
+  {
+    q: "Can I track my shipment live?",
+    a: "Yes — every load carries GPS with checkpoint scans, and you get a shareable tracking link the moment the vehicle leaves origin.",
+  },
+  {
+    q: "Do you handle customs?",
+    a: "End to end. Our in-house brokers clear UK and EU customs, including bonded storage and deferred duty accounts.",
+  },
+  {
+    q: "What size shipments do you take?",
+    a: "From a single pallet to full truckloads, FCL and LCL containers, and chartered air freight for urgent lanes.",
+  },
+];
+
 const steps = [
   { n: "01", t: "Book", c: "Give us the lane, pallet count and window. Rate confirmed in GBP." },
   { n: "02", t: "Collect", c: "A driver arrives in the booked slot and seals the load at origin." },
@@ -87,7 +136,7 @@ function Index() {
       </div>
 
       {/* nav */}
-      <header className="relative z-20 mx-auto max-w-7xl px-6 pt-6">
+      <header className="sticky top-4 z-50 mx-auto max-w-7xl px-6 pt-6">
         <nav className="glass flex items-center justify-between rounded-2xl border border-white/60 px-6 py-4 shadow-[var(--shadow-soft)]">
           <div className="flex items-center gap-3">
             <div className="grid size-10 place-items-center rounded-xl bg-brand font-display text-lg font-bold text-mist">

@@ -116,6 +116,8 @@ const navLinks = [
   { href: "#solutions", label: "Solutions" },
   { href: "#network", label: "Network" },
   { href: "#process", label: "Tracking" },
+  { href: "#industries", label: "Industries" },
+  { href: "#faq", label: "FAQ" },
   { href: "#quote", label: "Contact" },
 ];
 

@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Plane, Ship, Truck } from "lucide-react";
+import { Menu, Plane, Ship, Truck, X } from "lucide-react";
 import portNight from "@/assets/port-night.jpg";
 import depotDawn from "@/assets/depot-dawn.jpg";
 
@@ -62,7 +63,15 @@ const lanes = [
   "Birmingham → Paris",
 ];
 
+const navLinks = [
+  { href: "#solutions", label: "Solutions" },
+  { href: "#network", label: "Network" },
+  { href: "#process", label: "Tracking" },
+  { href: "#quote", label: "Contact" },
+];
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-mist">
       <div className="pointer-events-none absolute inset-0">
@@ -87,18 +96,51 @@ function Index() {
             <span className="font-display text-lg font-semibold tracking-tight text-brand">Velora</span>
           </div>
           <div className="hidden items-center gap-8 text-sm font-medium text-ink/70 md:flex">
-            <a href="#solutions" className="transition hover:text-accent-blue">Solutions</a>
-            <a href="#network" className="transition hover:text-accent-blue">Network</a>
-            <a href="#process" className="transition hover:text-accent-blue">Tracking</a>
-            <a href="#quote" className="transition hover:text-accent-blue">Contact</a>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="transition hover:text-accent-blue">
+                {l.label}
+              </a>
+            ))}
           </div>
           <a
             href="#quote"
-            className="rounded-xl bg-accent-blue px-5 py-2.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5"
+            className="hidden rounded-xl bg-accent-blue px-5 py-2.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5 md:inline-block"
           >
             Get a quote
           </a>
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="grid size-10 place-items-center rounded-xl border border-white/60 text-brand transition hover:bg-white/60 md:hidden"
+          >
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </nav>
+
+        {/* mobile menu */}
+        {menuOpen && (
+          <div className="glass mt-3 flex flex-col gap-1 rounded-2xl border border-white/60 p-3 shadow-[var(--shadow-soft)] md:hidden">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-4 py-3 text-sm font-medium text-ink/80 transition hover:bg-white/60 hover:text-accent-blue"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="#quote"
+              onClick={() => setMenuOpen(false)}
+              className="mt-1 rounded-xl bg-accent-blue px-4 py-3 text-center text-sm font-semibold text-mist shadow-[var(--shadow-accent)]"
+            >
+              Get a quote
+            </a>
+          </div>
+        )}
       </header>
 
       {/* hero */}

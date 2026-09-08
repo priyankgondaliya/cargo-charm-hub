@@ -151,3 +151,56 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --brand: oklch(0.19 0.035 262);
+  --ink: oklch(0.27 0.045 264);
+  --accent-blue: oklch(0.58 0.21 262);
+  --mint: oklch(0.77 0.15 163);
+  --mist: oklch(0.96 0.011 258);
+  --glow: oklch(0.72 0.13 265);
+  --shadow-soft: 0 10px 40px oklch(0.19 0.035 262 / 0.08);
+  --shadow-lift: 0 30px 80px oklch(0.19 0.035 262 / 0.28);
+  --shadow-accent: 0 8px 24px oklch(0.58 0.21 262 / 0.4);
+}
+
+@utility glass {
+  background: oklch(1 0 0 / 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+@utility glass-dark {
+  background: oklch(0.19 0.035 262 / 0.42);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes drift {
+  from { transform: translate3d(-4%, -2%, 0) scale(1); }
+  to { transform: translate3d(6%, 4%, 0) scale(1.15); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility floaty { animation: floaty 6s ease-in-out infinite; }
+@utility drift { animation: drift 18s ease-in-out infinite alternate; }
+@utility rise { animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@utility marquee { animation: marquee 30s linear infinite; }
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+}

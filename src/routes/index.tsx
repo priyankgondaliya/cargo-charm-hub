@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Plane, Ship, Truck } from "lucide-react";
 import portNight from "@/assets/port-night.jpg";
 import depotDawn from "@/assets/depot-dawn.jpg";
 
@@ -26,19 +27,19 @@ export const Route = createFileRoute("/")({
 
 const services = [
   {
-    icon: "✈",
+    icon: Plane,
     tint: "bg-accent-blue/10",
     title: "Air freight",
     copy: "Priority next-day lanes across Europe and Asia with customs handled end to end.",
   },
   {
-    icon: "⚓",
+    icon: Ship,
     tint: "bg-mint/15",
     title: "Ocean freight",
     copy: "FCL and LCL on scheduled trade lanes, optimised for cost without losing speed.",
   },
   {
-    icon: "🚚",
+    icon: Truck,
     tint: "bg-glow/15",
     title: "Road & 3PL",
     copy: "Managed warehousing, last-mile and bonded storage under one accountable partner.",
@@ -219,8 +220,8 @@ function Index() {
                   key={s.title}
                   className="rounded-2xl border border-white/70 bg-white/50 p-6 transition hover:-translate-y-1 hover:bg-white/70"
                 >
-                  <div className={`grid size-12 place-items-center rounded-xl text-2xl ${s.tint}`}>
-                    {s.icon}
+                  <div className={`grid size-12 place-items-center rounded-xl ${s.tint}`}>
+                    <s.icon className="size-6 text-brand" strokeWidth={1.75} />
                   </div>
                   <div className="mt-4 font-display text-lg font-semibold text-brand">{s.title}</div>
                   <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.copy}</p>

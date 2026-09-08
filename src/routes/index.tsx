@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Plane, Ship, Truck } from "lucide-react";
+import { Menu, Plane, Ship, Truck, X } from "lucide-react";
 import portNight from "@/assets/port-night.jpg";
 import depotDawn from "@/assets/depot-dawn.jpg";
 
@@ -46,6 +47,55 @@ const services = [
   },
 ];
 
+const industries = [
+  "Retail & e-commerce",
+  "Automotive parts",
+  "Pharma & cold chain",
+  "Food & beverage",
+  "Electronics",
+  "Industrial & machinery",
+];
+
+const testimonials = [
+  {
+    quote:
+      "Velora cut our Europe-bound transit times by two days and the live tracking ended the 'where is my pallet' phone calls.",
+    name: "Sarah Whitfield",
+    role: "Supply Chain Lead, Norbrook Retail",
+  },
+  {
+    quote:
+      "Rates land the same day, the driver turns up in the slot, and the POD is in my inbox before I've finished lunch.",
+    name: "Daniel Okafor",
+    role: "Operations Manager, Atlas Components",
+  },
+  {
+    quote:
+      "Cold-chain across three countries with zero temperature excursions in 18 months. The audit trail is impeccable.",
+    name: "Dr. Priya Menon",
+    role: "Head of Logistics, HelixPharma",
+  },
+];
+
+const faqs = [
+  {
+    q: "How fast do I get a quote?",
+    a: "The same working day. Send the lane, pallet count and date window and our desk returns a rate in GBP with everything included.",
+  },
+  {
+    q: "Can I track my shipment live?",
+    a: "Yes — every load carries GPS with checkpoint scans, and you get a shareable tracking link the moment the vehicle leaves origin.",
+  },
+  {
+    q: "Do you handle customs?",
+    a: "End to end. Our in-house brokers clear UK and EU customs, including bonded storage and deferred duty accounts.",
+  },
+  {
+    q: "What size shipments do you take?",
+    a: "From a single pallet to full truckloads, FCL and LCL containers, and chartered air freight for urgent lanes.",
+  },
+];
+
 const steps = [
   { n: "01", t: "Book", c: "Give us the lane, pallet count and window. Rate confirmed in GBP." },
   { n: "02", t: "Collect", c: "A driver arrives in the booked slot and seals the load at origin." },
@@ -62,7 +112,17 @@ const lanes = [
   "Birmingham → Paris",
 ];
 
+const navLinks = [
+  { href: "#solutions", label: "Solutions" },
+  { href: "#network", label: "Network" },
+  { href: "#process", label: "Tracking" },
+  { href: "#industries", label: "Industries" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#quote", label: "Contact" },
+];
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-mist">
       <div className="pointer-events-none absolute inset-0">
@@ -78,7 +138,7 @@ function Index() {
       </div>
 
       {/* nav */}
-      <header className="relative z-20 mx-auto max-w-7xl px-6 pt-6">
+      <header className="sticky top-4 z-50 mx-auto max-w-7xl px-6 pt-6">
         <nav className="glass flex items-center justify-between rounded-2xl border border-white/60 px-6 py-4 shadow-[var(--shadow-soft)]">
           <div className="flex items-center gap-3">
             <div className="grid size-10 place-items-center rounded-xl bg-brand font-display text-lg font-bold text-mist">
@@ -87,18 +147,51 @@ function Index() {
             <span className="font-display text-lg font-semibold tracking-tight text-brand">Velora</span>
           </div>
           <div className="hidden items-center gap-8 text-sm font-medium text-ink/70 md:flex">
-            <a href="#solutions" className="transition hover:text-accent-blue">Solutions</a>
-            <a href="#network" className="transition hover:text-accent-blue">Network</a>
-            <a href="#process" className="transition hover:text-accent-blue">Tracking</a>
-            <a href="#quote" className="transition hover:text-accent-blue">Contact</a>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="transition hover:text-accent-blue">
+                {l.label}
+              </a>
+            ))}
           </div>
           <a
             href="#quote"
-            className="rounded-xl bg-accent-blue px-5 py-2.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5"
+            className="hidden rounded-xl bg-accent-blue px-5 py-2.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5 md:inline-block"
           >
             Get a quote
           </a>
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="grid size-10 place-items-center rounded-xl border border-white/60 text-brand transition hover:bg-white/60 md:hidden"
+          >
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </nav>
+
+        {/* mobile menu */}
+        {menuOpen && (
+          <div className="glass mt-3 flex flex-col gap-1 rounded-2xl border border-white/60 p-3 shadow-[var(--shadow-soft)] md:hidden">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-4 py-3 text-sm font-medium text-ink/80 transition hover:bg-white/60 hover:text-accent-blue"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="#quote"
+              onClick={() => setMenuOpen(false)}
+              className="mt-1 rounded-xl bg-accent-blue px-4 py-3 text-center text-sm font-semibold text-mist shadow-[var(--shadow-accent)]"
+            >
+              Get a quote
+            </a>
+          </div>
+        )}
       </header>
 
       {/* hero */}
@@ -288,6 +381,76 @@ function Index() {
                   </div>
                   <div className="mt-4 font-display text-lg font-semibold text-brand">{s.t}</div>
                   <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.c}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* industries */}
+        <section id="industries" className="mt-16">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              Industries we move
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              One carrier, every sector.
+            </h2>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
+            {industries.map((i) => (
+              <div
+                key={i}
+                className="glass rounded-2xl border border-white/60 px-6 py-5 text-center text-sm font-semibold text-brand shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-accent-blue/50"
+              >
+                {i}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* testimonials */}
+        <section id="testimonials" className="mt-16">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              What clients say
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              Trusted on the busiest lanes.
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {testimonials.map((t) => (
+              <figure
+                key={t.name}
+                className="glass flex flex-col rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1"
+              >
+                <blockquote className="flex-1 text-sm leading-relaxed text-ink/75">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-5 border-t border-white/60 pt-4">
+                  <div className="font-display text-sm font-semibold text-brand">{t.name}</div>
+                  <div className="mt-0.5 text-xs text-ink/55">{t.role}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* faq */}
+        <section id="faq" className="mt-16">
+          <div className="glass rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)]">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-brand">
+              Questions, answered
+            </h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {faqs.map((f) => (
+                <div
+                  key={f.q}
+                  className="rounded-2xl border border-white/70 bg-white/50 p-6 transition hover:bg-white/70"
+                >
+                  <div className="font-display text-base font-semibold text-brand">{f.q}</div>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{f.a}</p>
                 </div>
               ))}
             </div>

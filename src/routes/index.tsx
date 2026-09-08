@@ -385,6 +385,76 @@ function Index() {
           </div>
         </section>
 
+        {/* industries */}
+        <section id="industries" className="mt-16">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              Industries we move
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              One carrier, every sector.
+            </h2>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
+            {industries.map((i) => (
+              <div
+                key={i}
+                className="glass rounded-2xl border border-white/60 px-6 py-5 text-center text-sm font-semibold text-brand shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-accent-blue/50"
+              >
+                {i}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* testimonials */}
+        <section id="testimonials" className="mt-16">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              What clients say
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              Trusted on the busiest lanes.
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {testimonials.map((t) => (
+              <figure
+                key={t.name}
+                className="glass flex flex-col rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1"
+              >
+                <blockquote className="flex-1 text-sm leading-relaxed text-ink/75">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-5 border-t border-white/60 pt-4">
+                  <div className="font-display text-sm font-semibold text-brand">{t.name}</div>
+                  <div className="mt-0.5 text-xs text-ink/55">{t.role}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* faq */}
+        <section id="faq" className="mt-16">
+          <div className="glass rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)]">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-brand">
+              Questions, answered
+            </h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {faqs.map((f) => (
+                <div
+                  key={f.q}
+                  className="rounded-2xl border border-white/70 bg-white/50 p-6 transition hover:bg-white/70"
+                >
+                  <div className="font-display text-base font-semibold text-brand">{f.q}</div>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* quote */}
         <section id="quote" className="mt-16">
           <div className="glass grid gap-10 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2">

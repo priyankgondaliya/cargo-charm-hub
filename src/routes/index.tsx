@@ -1,8 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Clock, ShieldCheck, Globe2 } from "lucide-react";
+import { ArrowRight, Clock, ShieldCheck, Globe2, Boxes, Leaf } from "lucide-react";
 import airCargo from "@/assets/air-cargo.jpg";
 import courierVan from "@/assets/courier-van.jpg";
-import { services, stats, steps, testimonials, faqs, lanes, industries } from "@/data/site";
+import warehouse from "@/assets/warehouse.jpg";
+import {
+  services,
+  stats,
+  steps,
+  testimonials,
+  faqs,
+  lanes,
+  industries,
+  hubs,
+  corridors,
+  capabilities,
+  caseStudies,
+  serviceLevels,
+  credentials,
+} from "@/data/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -217,11 +232,48 @@ function Index() {
         </div>
       </section>
 
+      {/* hubs */}
+      <section className="mt-20">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              UK airport hubs
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+              Three gateways. One account.
+            </h2>
+          </div>
+          <Link to="/about" className="inline-flex items-center gap-2 text-sm font-semibold text-accent-blue">
+            About our network <ArrowRight className="size-4" />
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {hubs.map((h) => (
+            <div
+              key={h.code}
+              className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="font-display text-xl font-bold text-brand">{h.name}</div>
+                <span className="rounded-full bg-accent-blue/10 px-3 py-1 text-xs font-semibold text-accent-blue">
+                  {h.code}
+                </span>
+              </div>
+              <div className="mt-3 text-sm font-semibold text-ink/80">{h.focus}</div>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{h.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* process */}
       <section className="mt-20">
         <h2 className="font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
           How a shipment flies
         </h2>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
+          Four clear stages from rate to POD — with live status your customers can follow.
+        </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div
@@ -238,18 +290,148 @@ function Index() {
         </div>
       </section>
 
-      {/* industries preview */}
+      {/* corridors */}
+      <section className="mt-20">
+        <div className="glass rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:p-12">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+                Trade corridors
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+                Lanes we tender every week.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-ink/65">
+              Scheduled capacity on the corridors UK shippers use most — with charters when the
+              calendar gets tight.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {corridors.map((c) => (
+              <div
+                key={`${c.from}-${c.to}`}
+                className="rounded-2xl border border-white/70 bg-white/50 p-6 transition hover:-translate-y-1 hover:bg-white/70"
+              >
+                <div className="flex items-center gap-2 font-display text-base font-semibold text-brand">
+                  <span>{c.from}</span>
+                  <ArrowRight className="size-4 shrink-0 text-accent-blue" />
+                  <span>{c.to}</span>
+                </div>
+                <p className="mt-2 text-sm text-ink/60">{c.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* capabilities */}
       <section className="mt-20">
         <div className="text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-            Sectors we fly for
+            Special handling
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
-            Cargo that cannot wait.
+            When the cargo is not ordinary.
           </h2>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {industries.slice(0, 6).map((i) => (
+          {capabilities.map((c) => (
+            <div
+              key={c.title}
+              className="glass rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1"
+            >
+              <div className="font-display text-lg font-semibold text-brand">{c.title}</div>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{c.copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* warehouse band */}
+      <section className="mt-20">
+        <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              Bonded warehousing
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              35,000 sq ft next to the ramp.
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
+              ETSF temporary storage, pick-and-pack, airline build-up and screening under the same
+              roof as the ops desk — so uncleared freight does not sit waiting for another contractor.
+            </p>
+            <Link
+              to="/services"
+              hash="warehousing"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-blue"
+            >
+              Explore warehousing <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <img
+            src={warehouse}
+            alt="Bonded warehouse team handling screened air cargo pallets"
+            width={1600}
+            height={1000}
+            loading="lazy"
+            className="aspect-[16/10] w-full rounded-2xl border border-white/60 object-cover"
+          />
+        </div>
+      </section>
+
+      {/* service levels */}
+      <section className="mt-20">
+        <div className="max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+            Service levels
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+            Pick the clock your freight needs.
+          </h2>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {serviceLevels.map((s) => (
+            <div
+              key={s.name}
+              className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1"
+            >
+              <div className="font-display text-xl font-bold text-brand">{s.name}</div>
+              <div className="mt-2 text-sm font-semibold text-accent-blue">{s.window}</div>
+              <ul className="mt-5 space-y-2">
+                {s.points.map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-ink/65">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-mint" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* industries preview */}
+      <section className="mt-20">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              Sectors we fly for
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+              Cargo that cannot wait.
+            </h2>
+          </div>
+          <Link
+            to="/industries"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-accent-blue"
+          >
+            All industries <ArrowRight className="size-4" />
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {industries.map((i) => (
             <div
               key={i.title}
               className="glass rounded-2xl border border-white/60 p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-accent-blue/50"
@@ -258,6 +440,102 @@ function Index() {
               <p className="mt-2 text-sm leading-relaxed text-ink/65">{i.copy}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* case studies */}
+      <section className="mt-20">
+        <div className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+            Results
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+            Outcomes on real flights.
+          </h2>
+        </div>
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {caseStudies.map((c) => (
+            <article
+              key={c.title}
+              className="glass flex flex-col rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent-blue">
+                {c.sector}
+              </span>
+              <h3 className="mt-3 font-display text-xl font-bold text-brand">{c.title}</h3>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-ink/65">{c.copy}</p>
+              <div className="mt-6 border-t border-white/60 pt-4 font-display text-sm font-semibold text-mint">
+                {c.result}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* sustainability */}
+      <section className="mt-20">
+        <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-[auto_1fr] lg:items-center lg:p-12">
+          <div className="flex size-20 items-center justify-center rounded-2xl bg-mint/15">
+            <Leaf className="size-10 text-mint" strokeWidth={1.5} />
+          </div>
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              Responsible freight
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              Consolidate where it helps. Report what you need.
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink/70">
+              We favour consolidation and short-sea or road where the clock allows, and can provide
+              lane-level carbon estimates for your ESG reporting — without turning every urgent AOG
+              into a lecture.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* credentials */}
+      <section className="mt-20">
+        <div className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+            Credentials
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+            Ready for your vendor pack.
+          </h2>
+        </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          {credentials.map((c) => (
+            <div
+              key={c}
+              className="glass inline-flex items-center gap-2 rounded-2xl border border-white/60 px-5 py-3 text-sm font-semibold text-brand shadow-[var(--shadow-soft)]"
+            >
+              <Boxes className="size-4 text-accent-blue" strokeWidth={1.75} />
+              {c}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* mid cta */}
+      <section className="mt-20">
+        <div className="relative overflow-hidden rounded-3xl border border-white/40 bg-brand px-8 py-14 text-center shadow-[var(--shadow-lift)] lg:px-16">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent-blue/40 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-mint/25 blur-3xl" />
+          <h2 className="relative font-display text-3xl font-bold tracking-tight text-mist md:text-4xl">
+            Need a rate before the next uplift?
+          </h2>
+          <p className="relative mx-auto mt-4 max-w-xl text-base leading-relaxed text-mist/75">
+            Send weight, dimensions and destination — our desk returns an all-in GBP quote the same
+            working day.
+          </p>
+          <Link
+            to="/contact"
+            className="relative mt-8 inline-flex items-center gap-2 rounded-xl bg-accent-blue px-7 py-3.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5"
+          >
+            Get a same-day quote
+            <ArrowRight className="size-4" />
+          </Link>
         </div>
       </section>
 
@@ -271,7 +549,7 @@ function Index() {
             Trusted on the tightest deadlines.
           </h2>
         </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((t) => (
             <figure
               key={t.name}

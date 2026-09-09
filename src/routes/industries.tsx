@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/SiteShell";
-import { industries, testimonials } from "@/data/site";
+import { caseStudies, capabilities, industries, testimonials } from "@/data/site";
 import warehouse from "@/assets/warehouse.jpg";
 
 export const Route = createFileRoute("/industries")({
@@ -25,6 +25,36 @@ export const Route = createFileRoute("/industries")({
   component: Industries,
 });
 
+const playbooks = [
+  {
+    title: "Aerospace playbook",
+    points: [
+      "Next-flight-out and hand-carry for AOG",
+      "DGR acceptance for batteries and chemicals",
+      "Stand-side delivery with photo POD",
+      "Night freighter tendering when passenger belly is full",
+    ],
+  },
+  {
+    title: "Pharma playbook",
+    points: [
+      "Validated packaging and data loggers",
+      "+2°C to +25°C lane options",
+      "GDP-minded handling and audit trails",
+      "Named coordinator for clinical trial kits",
+    ],
+  },
+  {
+    title: "Retail playbook",
+    points: [
+      "Peak capacity reserved before Black Friday",
+      "Store and DC timed deliveries",
+      "Returns and reverse logistics",
+      "Sample and lookbook hand-carry",
+    ],
+  },
+];
+
 function Industries() {
   return (
     <div>
@@ -35,7 +65,7 @@ function Industries() {
       />
 
       <section className="mx-auto max-w-7xl px-6 pt-12">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {industries.map((i) => (
             <div
               key={i.title}
@@ -43,6 +73,30 @@ function Industries() {
             >
               <div className="font-display text-lg font-semibold text-brand">{i.title}</div>
               <p className="mt-2 text-sm leading-relaxed text-ink/65">{i.copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
+          Sector playbooks
+        </h2>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
+          Pre-agreed handling notes so your first booking already knows the rules of your industry.
+        </p>
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {playbooks.map((p) => (
+            <div key={p.title} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
+              <div className="font-display text-xl font-bold text-brand">{p.title}</div>
+              <ul className="mt-5 space-y-3">
+                {p.points.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm text-ink/65">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent-blue" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -57,12 +111,14 @@ function Industries() {
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand">
               Temperature, hazard class and security, covered.
             </h2>
-            <ul className="mt-6 space-y-3 text-sm leading-relaxed text-ink/70">
-              <li>Validated cold-chain packaging from +2°C to +25°C with data loggers.</li>
-              <li>IATA DGR-trained staff for most hazard classes, including lithium batteries.</li>
-              <li>Known-consignor screening, sealed vehicles and CCTV-covered storage.</li>
-              <li>High-value cargo held in a caged secure area with restricted access.</li>
-            </ul>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {capabilities.map((c) => (
+                <div key={c.title} className="rounded-2xl border border-white/70 bg-white/50 p-4">
+                  <div className="font-display text-sm font-semibold text-brand">{c.title}</div>
+                  <p className="mt-1 text-xs leading-relaxed text-ink/65">{c.copy}</p>
+                </div>
+              ))}
+            </div>
           </div>
           <img
             src={warehouse}
@@ -76,7 +132,30 @@ function Industries() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pt-16">
-        <div className="grid gap-4 md:grid-cols-3">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
+          Outcomes on real flights
+        </h2>
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {caseStudies.map((c) => (
+            <article
+              key={c.title}
+              className="glass flex flex-col rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent-blue">
+                {c.sector}
+              </span>
+              <h3 className="mt-3 font-display text-xl font-bold text-brand">{c.title}</h3>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-ink/65">{c.copy}</p>
+              <div className="mt-6 border-t border-white/60 pt-4 font-display text-sm font-semibold text-mint">
+                {c.result}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((t) => (
             <figure
               key={t.name}

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { PageHero } from "@/components/site/SiteShell";
-import { services, steps } from "@/data/site";
+import { capabilities, serviceLevels, services, steps } from "@/data/site";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -64,6 +64,25 @@ const detail: Record<string, string[]> = {
   ],
 };
 
+const addons = [
+  {
+    t: "Cargo insurance",
+    c: "All-risk cover arranged against your declared value, with claims handled by a named contact.",
+  },
+  {
+    t: "Packaging & crating",
+    c: "Export crates, ISPM-15 timber and cool-chain packaging built to airline standards.",
+  },
+  {
+    t: "Onboard courier",
+    c: "A Velora courier accompanies the bag or case on the passenger flight for maximum control.",
+  },
+  {
+    t: "API & EDI hooks",
+    c: "Booking, status and POD events into your WMS or ERP once volumes justify the link.",
+  },
+];
+
 function Services() {
   return (
     <div>
@@ -112,6 +131,57 @@ function Services() {
 
       <section className="mx-auto max-w-7xl px-6 pt-16">
         <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
+          Service levels
+        </h2>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
+          Clear windows and clear prices — upgrade a single booking or set a standing SLA by lane.
+        </p>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {serviceLevels.map((s) => (
+            <div key={s.name} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
+              <div className="font-display text-xl font-bold text-brand">{s.name}</div>
+              <div className="mt-2 text-sm font-semibold text-accent-blue">{s.window}</div>
+              <ul className="mt-5 space-y-2">
+                {s.points.map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-ink/65">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-mint" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
+          Special handling
+        </h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((c) => (
+            <div key={c.title} className="glass rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]">
+              <div className="font-display text-lg font-semibold text-brand">{c.title}</div>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{c.copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Add-ons</h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {addons.map((a) => (
+            <div key={a.t} className="glass rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]">
+              <div className="font-display text-base font-semibold text-brand">{a.t}</div>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{a.c}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
           What happens after you book
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -124,6 +194,24 @@ function Services() {
               <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.c}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
+        <div className="rounded-3xl bg-brand p-10 text-center shadow-[var(--shadow-lift)] md:p-12">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-mist">
+            Not sure which service fits?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mist/70">
+            Tell us the pieces, weight and deadline — we will recommend economy, express or next
+            flight out and quote it the same day.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-8 inline-block rounded-xl bg-accent-blue px-7 py-3.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5"
+          >
+            Talk to a coordinator
+          </Link>
         </div>
       </section>
     </div>

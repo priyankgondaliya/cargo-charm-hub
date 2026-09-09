@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import opsTeam from "@/assets/ops-team.jpg";
 import warehouse from "@/assets/warehouse.jpg";
 import { PageHero } from "@/components/site/SiteShell";
-import { stats } from "@/data/site";
+import { credentials, hubs, leadership, stats } from "@/data/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -40,6 +40,13 @@ const values = [
   { t: "Own the problem", c: "If a flight rolls or an entry queries, we fix it and tell you before you have to ask." },
   { t: "Quote honestly", c: "All-in rates in GBP. No surprise handling, storage or documentation charges on the invoice." },
   { t: "Move carefully", c: "DGR-trained staff, screened cargo, sealed vehicles and a full audit trail on every job." },
+];
+
+const facilities = [
+  { t: "ETSF bonded warehouse", c: "35,000 sq ft temporary storage with racking, build-up bays and CCTV." },
+  { t: "Screening suite", c: "Known-consignor and unknown cargo screening before airline tender." },
+  { t: "Courier fleet", c: "85 vans and onboard couriers covering London, Midlands and North West." },
+  { t: "24/7 control room", c: "Flight monitoring, exception handling and customer updates through the night." },
 ];
 
 function About() {
@@ -104,6 +111,29 @@ function About() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pt-16">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+          UK desks
+        </span>
+        <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand">
+          Where we operate
+        </h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {hubs.map((h) => (
+            <div key={h.code} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
+              <div className="flex items-center justify-between">
+                <div className="font-display text-xl font-bold text-brand">{h.name}</div>
+                <span className="rounded-full bg-accent-blue/10 px-3 py-1 text-xs font-semibold text-accent-blue">
+                  {h.code}
+                </span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-ink/80">{h.focus}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{h.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16">
         <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
           <img
             src={warehouse}
@@ -133,18 +163,45 @@ function About() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pt-16">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Facilities</h2>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
+          Kit that sits under the same roof as the people who book your freight — so hand-offs stay
+          short.
+        </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {facilities.map((f) => (
+            <div key={f.t} className="glass rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]">
+              <div className="font-display text-base font-semibold text-brand">{f.t}</div>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{f.c}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Leadership</h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {leadership.map((p) => (
+            <div key={p.name} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
+              <div className="font-display text-lg font-semibold text-brand">{p.name}</div>
+              <div className="mt-1 text-sm font-semibold text-accent-blue">{p.role}</div>
+              <p className="mt-3 text-sm leading-relaxed text-ink/65">{p.copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
         <div className="glass rounded-3xl border border-white/60 p-8 text-center shadow-[var(--shadow-soft)]">
           <h2 className="font-display text-2xl font-bold tracking-tight text-brand">
             Accreditations
           </h2>
           <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm font-semibold text-ink/70">
-            {["IATA agent", "BIFA member", "AEO(F) compliant", "ISO 9001", "ISO 27001", "ETSF approved", "IATA DGR trained"].map(
-              (a) => (
-                <span key={a} className="rounded-full border border-white/70 bg-white/60 px-5 py-2">
-                  {a}
-                </span>
-              ),
-            )}
+            {credentials.map((a) => (
+              <span key={a} className="rounded-full border border-white/70 bg-white/60 px-5 py-2">
+                {a}
+              </span>
+            ))}
           </div>
           <Link
             to="/contact"

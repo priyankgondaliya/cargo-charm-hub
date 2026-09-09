@@ -1,6 +1,6 @@
 # Roadmap
 
 - [x] Mobile hamburger menu with working navigation
-- [ ] Sticky header on desktop
-- [ ] More content/sections so landing page feels fuller
+- [x] Sticky header on desktop
+- [x] More content/sections so landing page feels fuller
 - [ ] Verify build + preview

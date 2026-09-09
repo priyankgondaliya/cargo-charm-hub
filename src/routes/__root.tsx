@@ -127,7 +127,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen w-full overflow-x-hidden bg-mist">
+      <div className="relative min-h-screen w-full bg-mist">
         <Backdrop />
         <SiteHeader />
         <main className="relative z-10">

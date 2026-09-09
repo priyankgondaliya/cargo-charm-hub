@@ -189,7 +189,7 @@ export function PageHero({
 
 export function Backdrop() {
   return (
-    <div className="pointer-events-none fixed inset-0">
+    <div className="pointer-events-none fixed inset-0 overflow-hidden">
       <div className="drift absolute -top-40 -left-32 h-[520px] w-[520px] rounded-full bg-glow/40 blur-3xl" />
       <div
         className="drift absolute top-1/3 -right-40 h-[560px] w-[560px] rounded-full bg-accent-blue/25 blur-3xl"

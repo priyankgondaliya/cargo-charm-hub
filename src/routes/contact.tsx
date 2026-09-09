@@ -67,7 +67,7 @@ function isValidPhone(value: string) {
 }
 
 const quoteSchema = z.object({
-  company: z.string().trim().min(2, "Enter your company name."),
+  company: z.string().trim(),
   contactName: z.string().trim().min(2, "Enter a contact name."),
   email: z.string().trim().min(1, "Enter your email.").email("Enter a valid email address."),
   phone: z
@@ -102,7 +102,7 @@ function sendQuoteEmail(values: QuoteFormValues) {
         );
         const body = encodeURIComponent(
           [
-            `Company: ${values.company}`,
+            values.company ? `Company: ${values.company}` : null,
             `Contact: ${values.contactName}`,
             `Email: ${values.email}`,
             values.phone ? `Phone: ${values.phone}` : null,
@@ -179,7 +179,7 @@ function QuoteForm() {
   return (
     <form className="grid gap-3" onSubmit={handleSubmit(onValid, onInvalid)} noValidate>
       <div className="grid gap-3 sm:grid-cols-2">
-        <Field htmlFor="company" label="Company name" required error={errors.company?.message}>
+        <Field htmlFor="company" label="Company name" error={errors.company?.message}>
           <input
             id="company"
             {...register("company")}
@@ -187,7 +187,6 @@ function QuoteForm() {
             placeholder="Company name"
             autoComplete="organization"
             aria-invalid={Boolean(errors.company)}
-            aria-required="true"
           />
         </Field>
         <Field htmlFor="contactName" label="Contact name" required error={errors.contactName?.message}>

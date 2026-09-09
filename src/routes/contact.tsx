@@ -8,6 +8,7 @@ import type { ReactNode } from "react";
 import { PageHero } from "@/components/site/SiteShell";
 import { brand } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { btnCta, IconBadge, Section, SectionTitle } from "@/components/site/primitives";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -21,7 +22,8 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact LogiEdge Consulting" },
       {
         property: "og:description",
-        content: "Same-working-day quotes for air freight, sea freight, road, customs and warehousing.",
+        content:
+          "Same-working-day quotes for air freight, sea freight, road, customs and warehousing.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -37,7 +39,11 @@ const offices = [
   },
   {
     title: "Birmingham",
-    lines: ["Cargo Village, Birmingham Airport", "B26 3QJ", "ETSF warehouse, road hub & inland clearance"],
+    lines: [
+      "Cargo Village, Birmingham Airport",
+      "B26 3QJ",
+      "ETSF warehouse, road hub & inland clearance",
+    ],
   },
   {
     title: "Manchester",
@@ -45,7 +51,11 @@ const offices = [
   },
   {
     title: "Port network",
-    lines: ["Felixstowe · Southampton · London Gateway", "Tilbury · Liverpool", "FCL, LCL, RoRo and short-sea Europe"],
+    lines: [
+      "Felixstowe · Southampton · London Gateway",
+      "Tilbury · Liverpool",
+      "FCL, LCL, RoRo and short-sea Europe",
+    ],
   },
 ];
 
@@ -130,8 +140,8 @@ function sendQuoteEmail(values: QuoteFormValues) {
 
 const fieldClass = (invalid?: boolean) =>
   cn(
-    "w-full rounded-xl border bg-white/60 px-4 py-3 text-sm text-brand outline-none transition placeholder:text-ink/45 focus:border-accent-blue",
-    invalid ? "border-red-400 focus:border-red-400" : "border-white/70",
+    "w-full rounded-lg border bg-white px-4 py-3 text-sm text-navy outline-none transition placeholder:text-subtle focus:border-accent-blue",
+    invalid ? "border-red-400 focus:border-red-400" : "border-line",
   );
 
 function QuoteForm() {
@@ -189,7 +199,12 @@ function QuoteForm() {
             aria-invalid={Boolean(errors.company)}
           />
         </Field>
-        <Field htmlFor="contactName" label="Contact name" required error={errors.contactName?.message}>
+        <Field
+          htmlFor="contactName"
+          label="Contact name"
+          required
+          error={errors.contactName?.message}
+        >
           <input
             id="contactName"
             {...register("contactName")}
@@ -274,11 +289,11 @@ function QuoteForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-1 rounded-xl bg-accent-blue px-6 py-3.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+        className={cn(btnCta, "mt-1 disabled:cursor-not-allowed disabled:opacity-70")}
       >
         {isSubmitting ? "Sending…" : "Request my quote"}
       </button>
-      <p className="text-xs text-ink/50">
+      <p className="text-xs text-subtle">
         Fields marked <span className="font-semibold text-red-500">*</span> are required. By
         submitting you agree we may contact you about this enquiry.
       </p>
@@ -301,7 +316,7 @@ function Field({
 }) {
   return (
     <div className="grid gap-1.5">
-      <label htmlFor={htmlFor} className="px-0.5 text-xs font-semibold text-ink/70">
+      <label htmlFor={htmlFor} className="px-0.5 text-xs font-semibold text-subtle">
         {label}
         {required ? (
           <span className="text-red-500" aria-hidden="true">
@@ -325,64 +340,67 @@ function Contact() {
         copy="Send weight, dimensions, destination and preferred mode — our desk returns an all-in GBP rate the same working day, with no surprise handling fees."
       />
 
-      <section className="mx-auto max-w-7xl px-6 pt-12">
-        <div className="glass grid gap-10 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:p-12">
+      <Section tone="white">
+        <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl font-bold tracking-tight text-brand">
-              Speak to the desk
-            </h2>
-            <p className="mt-3 text-base leading-relaxed text-ink/70">
+            <SectionTitle>Speak to the desk</SectionTitle>
+            <p className="mt-3 text-base leading-relaxed text-subtle">
               Urgent AOG, medical and same-day bookings are answered around the clock. Standard air,
               sea and road quotes go out Monday to Friday before close of play.
             </p>
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 space-y-3">
               <a
                 href={brand.phoneHref}
-                className="flex items-start gap-3 rounded-2xl border border-white/70 bg-white/50 p-4 transition hover:bg-white/70"
+                className="flex items-start gap-3 rounded-xl border border-line p-4 transition hover:border-navy/20 hover:bg-mist"
               >
-                <Phone className="mt-0.5 size-5 text-accent-blue" strokeWidth={1.75} />
+                <IconBadge>
+                  <Phone className="size-4" strokeWidth={1.75} />
+                </IconBadge>
                 <div>
-                  <div className="font-display text-sm font-semibold text-brand">{brand.phone}</div>
-                  <div className="mt-0.5 text-xs text-ink/55">24/7 operations desk</div>
+                  <div className="font-display text-sm font-semibold text-navy">{brand.phone}</div>
+                  <div className="mt-0.5 text-xs text-subtle">24/7 operations desk</div>
                 </div>
               </a>
               <a
                 href={`mailto:${brand.email}`}
-                className="flex items-start gap-3 rounded-2xl border border-white/70 bg-white/50 p-4 transition hover:bg-white/70"
+                className="flex items-start gap-3 rounded-xl border border-line p-4 transition hover:border-navy/20 hover:bg-mist"
               >
-                <Mail className="mt-0.5 size-5 text-accent-blue" strokeWidth={1.75} />
+                <IconBadge>
+                  <Mail className="size-4" strokeWidth={1.75} />
+                </IconBadge>
                 <div>
-                  <div className="font-display text-sm font-semibold text-brand">{brand.email}</div>
-                  <div className="mt-0.5 text-xs text-ink/55">Quotes, accounts &amp; paperwork</div>
+                  <div className="font-display text-sm font-semibold text-navy">{brand.email}</div>
+                  <div className="mt-0.5 text-xs text-subtle">Quotes, accounts &amp; paperwork</div>
                 </div>
               </a>
-              <div className="flex items-start gap-3 rounded-2xl border border-white/70 bg-white/50 p-4">
-                <MapPin className="mt-0.5 size-5 text-accent-blue" strokeWidth={1.75} />
+              <div className="flex items-start gap-3 rounded-xl border border-line p-4">
+                <IconBadge>
+                  <MapPin className="size-4" strokeWidth={1.75} />
+                </IconBadge>
                 <div>
-                  <div className="font-display text-sm font-semibold text-brand">
+                  <div className="font-display text-sm font-semibold text-navy">
                     Cargo Centre, Shoreham Road
                   </div>
-                  <div className="mt-0.5 text-xs text-ink/55">Heathrow TW6 3UA</div>
+                  <div className="mt-0.5 text-xs text-subtle">Heathrow TW6 3UA</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <QuoteForm />
+          <div className="rounded-xl border border-line bg-mist p-6 md:p-8">
+            <QuoteForm />
+          </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Our UK network</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <Section tone="mist">
+        <SectionTitle>Our UK network</SectionTitle>
+        <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
           {offices.map((o) => (
-            <div
-              key={o.title}
-              className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]"
-            >
-              <div className="font-display text-lg font-semibold text-brand">{o.title}</div>
-              <ul className="mt-3 space-y-1 text-sm leading-relaxed text-ink/65">
+            <div key={o.title} className="bg-white p-7">
+              <h3 className="font-display text-lg font-bold text-navy">{o.title}</h3>
+              <ul className="mt-3 space-y-1 text-sm leading-relaxed text-subtle">
                 {o.lines.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
@@ -390,7 +408,7 @@ function Contact() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
     </div>
   );
 }

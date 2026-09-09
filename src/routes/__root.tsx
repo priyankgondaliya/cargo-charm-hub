@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { SiteHeader, SiteFooter, Backdrop } from "../components/site/SiteShell";
+import { SiteHeader, SiteFooter } from "../components/site/SiteShell";
 import { Toaster } from "sileo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -26,7 +26,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-lg bg-amber px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-[#e09308]"
           >
             Go home
           </Link>
@@ -58,13 +58,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-lg bg-amber px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-[#e09308]"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-lg border border-line bg-white px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-mist"
           >
             Go home
           </a>
@@ -80,10 +80,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "LogiEdge Consulting — Air, Sea, Road & Local Freight" },
-      { name: "description", content: "Independent UK freight forwarder for air, sea, road and local delivery, with in-house customs and 24/7 operations." },
+      {
+        name: "description",
+        content:
+          "Independent UK freight forwarder for air, sea, road and local delivery, with in-house customs and 24/7 operations.",
+      },
       { name: "author", content: "LogiEdge Consulting" },
       { property: "og:title", content: "LogiEdge Consulting — Air, Sea, Road & Local Freight" },
-      { property: "og:description", content: "From a same-day parcel to a full container. Air, sea, road and local logistics from the UK." },
+      {
+        property: "og:description",
+        content:
+          "From a same-day parcel to a full container. Air, sea, road and local logistics from the UK.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -97,11 +105,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
-
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -128,10 +135,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="relative min-h-screen w-full bg-mist">
-        <Backdrop />
+      <div className="relative min-h-screen w-full overflow-x-clip bg-mist">
         <SiteHeader />
-        <main className="relative z-10">
+        <main id="main-content" className="relative z-10">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>

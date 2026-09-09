@@ -1,7 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
+import airCargo from "@/assets/air-cargo.jpg";
+import courierVan from "@/assets/courier-van.jpg";
+import warehouse from "@/assets/warehouse.jpg";
 import { PageHero } from "@/components/site/SiteShell";
+import {
+  Body,
+  CtaBand,
+  IconBadge,
+  Section,
+  SectionTitle,
+  btnCta,
+  cardClass,
+} from "@/components/site/primitives";
 import { capabilities, serviceLevels, services, steps } from "@/data/site";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -64,6 +77,21 @@ const detail: Record<string, string[]> = {
   ],
 };
 
+const serviceImages: Record<string, { src: string; alt: string }> = {
+  "air-freight": {
+    src: airCargo,
+    alt: "Wide-body cargo aircraft being loaded on the tarmac",
+  },
+  courier: {
+    src: courierVan,
+    alt: "Courier loading parcels into a delivery van on a UK street",
+  },
+  warehousing: {
+    src: warehouse,
+    alt: "Warehouse team palletising freight for onward distribution",
+  },
+};
+
 const addons = [
   {
     t: "Cargo insurance",
@@ -92,59 +120,117 @@ function Services() {
         copy="Whether it is a same-day parcel leaving London tonight or a monthly container programme from Felixstowe, the same coordinator books it, clears it and delivers it."
       />
 
-      <section className="mx-auto max-w-7xl space-y-6 px-6 pt-12">
-        {services.map((s, i) => (
-          <div
+      {services.map((s, i) => {
+        const image = serviceImages[s.slug];
+        const navy = i % 2 === 1;
+        return (
+          <Section
             key={s.slug}
             id={s.slug}
-            className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+            tone={navy ? "navy" : i % 4 === 2 ? "mist" : "white"}
+            className={navy ? "navy-grid" : undefined}
           >
-            <div className={i % 2 === 1 ? "lg:order-2" : undefined}>
-              <div className="grid size-12 place-items-center rounded-xl bg-accent-blue/10">
-                <s.icon className="size-6 text-accent-blue" strokeWidth={1.75} />
-              </div>
-              <h2 className="mt-4 font-display text-2xl font-bold tracking-tight text-brand md:text-3xl">
-                {s.title}
-              </h2>
-              <p className="mt-3 text-base leading-relaxed text-ink/70">{s.copy}</p>
-              <Link
-                to="/contact"
-                className="mt-6 inline-block rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-mist transition hover:-translate-y-0.5"
-              >
-                Enquire about {s.title.toLowerCase()}
-              </Link>
-            </div>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {detail[s.slug]?.map((d) => (
-                <li
-                  key={d}
-                  className="flex gap-3 rounded-2xl border border-white/70 bg-white/50 p-4 text-sm leading-relaxed text-ink/70"
+            <div
+              className={cn(
+                "grid items-center gap-10",
+                image ? "lg:grid-cols-2" : "lg:grid-cols-[0.9fr_1.1fr]",
+              )}
+            >
+              <div className={image && i % 2 === 1 ? "lg:order-2" : undefined}>
+                <IconBadge className={navy ? "bg-white/10 text-amber" : undefined}>
+                  <s.icon className="size-5" strokeWidth={1.75} />
+                </IconBadge>
+                <h2
+                  className={cn(
+                    "mt-4 font-display text-2xl font-bold tracking-tight md:text-3xl",
+                    navy ? "text-white" : "text-navy",
+                  )}
                 >
-                  <Check className="mt-0.5 size-4 shrink-0 text-mint" />
-                  {d}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
+                  {s.title}
+                </h2>
+                <p
+                  className={cn(
+                    "mt-3 text-base leading-relaxed",
+                    navy ? "text-navy-muted" : "text-subtle",
+                  )}
+                >
+                  {s.copy}
+                </p>
+                <Link to="/contact" className={cn(btnCta, "mt-6")}>
+                  Enquire about {s.title.toLowerCase()}
+                </Link>
+              </div>
+              {image ? (
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={1600}
+                  height={1000}
+                  loading="lazy"
+                  className="aspect-[16/10] w-full rounded-xl object-cover"
+                />
+              ) : (
+                <ul className="grid gap-3 sm:grid-cols-2">
+                  {detail[s.slug]?.map((d) => (
+                    <li
+                      key={d}
+                      className={cn(
+                        "flex gap-3 rounded-xl border p-4 text-sm leading-relaxed",
+                        navy
+                          ? "border-white/10 bg-white/5 text-navy-muted"
+                          : "border-line bg-white text-subtle",
+                      )}
+                    >
+                      <Check
+                        className={cn(
+                          "mt-0.5 size-4 shrink-0",
+                          navy ? "text-amber" : "text-success",
+                        )}
+                      />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            {image && (
+              <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+                {detail[s.slug]?.map((d) => (
+                  <li
+                    key={d}
+                    className={cn(
+                      "flex gap-3 rounded-xl border p-4 text-sm leading-relaxed",
+                      navy
+                        ? "border-white/10 bg-white/5 text-navy-muted"
+                        : "border-line bg-white text-subtle",
+                    )}
+                  >
+                    <Check
+                      className={cn("mt-0.5 size-4 shrink-0", navy ? "text-amber" : "text-success")}
+                    />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Section>
+        );
+      })}
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
-          Service levels
-        </h2>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
+      <Section tone="white">
+        <SectionTitle>Service levels</SectionTitle>
+        <Body className="mt-3">
           Clear windows and clear prices — upgrade a single booking or set a standing SLA by lane.
-        </p>
+        </Body>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {serviceLevels.map((s) => (
-            <div key={s.name} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
-              <div className="font-display text-xl font-bold text-brand">{s.name}</div>
+            <div key={s.name} className={cardClass}>
+              <h3 className="font-display text-xl font-bold text-navy">{s.name}</h3>
               <div className="mt-2 text-sm font-semibold text-accent-blue">{s.window}</div>
               <ul className="mt-5 space-y-2">
                 {s.points.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-sm text-ink/65">
-                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-mint" />
+                  <li key={p} className="flex items-start gap-2 text-sm text-subtle">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent-blue" />
                     {p}
                   </li>
                 ))}
@@ -152,68 +238,56 @@ function Services() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
-          Special handling
-        </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Section tone="mist">
+        <SectionTitle>Special handling</SectionTitle>
+        <div className="mt-8 grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c) => (
-            <div key={c.title} className="glass rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]">
-              <div className="font-display text-lg font-semibold text-brand">{c.title}</div>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">{c.copy}</p>
+            <div key={c.title} className="border-t border-line pt-5">
+              <h3 className="font-display text-lg font-bold text-navy">{c.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-subtle">{c.copy}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Add-ons</h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Section tone="white">
+        <SectionTitle>Add-ons</SectionTitle>
+        <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {addons.map((a) => (
-            <div key={a.t} className="glass rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]">
-              <div className="font-display text-base font-semibold text-brand">{a.t}</div>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">{a.c}</p>
+            <div key={a.t} className="border-t border-line pt-5">
+              <h3 className="font-display text-base font-bold text-navy">{a.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-subtle">{a.c}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
-          What happens after you book
-        </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <div key={s.n} className="glass rounded-3xl border border-white/60 p-7">
-              <div className="grid size-10 place-items-center rounded-full border border-accent-blue/40 font-display text-sm font-semibold text-accent-blue">
-                {s.n}
-              </div>
-              <div className="mt-4 font-display text-lg font-semibold text-brand">{s.t}</div>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.c}</p>
+      <Section tone="mist">
+        <SectionTitle>What happens after you book</SectionTitle>
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((s, i) => (
+            <div key={s.n} className="relative">
+              <div className="font-display text-sm font-bold text-accent-blue">{s.n}</div>
+              {i < steps.length - 1 && (
+                <div className="absolute top-2 left-10 hidden h-px w-[calc(100%-1.5rem)] bg-line lg:block" />
+              )}
+              <h3 className="mt-3 font-display text-lg font-bold text-navy">{s.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-subtle">{s.c}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
-        <div className="rounded-3xl bg-brand p-10 text-center shadow-[var(--shadow-lift)] md:p-12">
-          <h2 className="font-display text-3xl font-bold tracking-tight text-mist">
-            Not sure which service fits?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mist/70">
-            Tell us the pieces, weight and deadline — we will recommend sea, air, road or same-day
-            and quote it the same day.
-          </p>
-          <Link
-            to="/contact"
-            className="mt-8 inline-block rounded-xl bg-accent-blue px-7 py-3.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5"
-          >
-            Talk to a coordinator
-          </Link>
-        </div>
-      </section>
+      <CtaBand
+        title="Not sure which service fits?"
+        copy="Tell us the pieces, weight and deadline — we will recommend sea, air, road or same-day and quote it the same day."
+      >
+        <Link to="/contact" className={btnCta}>
+          Talk to a coordinator
+        </Link>
+      </CtaBand>
     </div>
   );
 }

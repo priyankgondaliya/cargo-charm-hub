@@ -1,5 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/SiteShell";
+import {
+  Body,
+  CtaBand,
+  Eyebrow,
+  Section,
+  SectionTitle,
+  btnCta,
+} from "@/components/site/primitives";
 import { caseStudies, capabilities, industries, testimonials } from "@/data/site";
 import warehouse from "@/assets/warehouse.jpg";
 
@@ -73,34 +81,29 @@ function Industries() {
         copy="Different sectors fail in different ways. A grounded aircraft, a box sitting on the quay and a missed production window all cost money, so we build the handling around the risk rather than the box."
       />
 
-      <section className="mx-auto max-w-7xl px-6 pt-12">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <Section tone="white">
+        <div className="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
           {industries.map((i) => (
-            <div
-              key={i.title}
-              className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-accent-blue/40"
-            >
-              <div className="font-display text-lg font-semibold text-brand">{i.title}</div>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">{i.copy}</p>
+            <div key={i.title} className="border-t border-line pt-5">
+              <h2 className="font-display text-lg font-bold text-navy">{i.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-subtle">{i.copy}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
-          Sector playbooks
-        </h2>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
+      <Section tone="mist">
+        <SectionTitle>Sector playbooks</SectionTitle>
+        <Body className="mt-3">
           Pre-agreed handling notes so your first booking already knows the rules of your industry.
-        </p>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        </Body>
+        <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {playbooks.map((p) => (
-            <div key={p.title} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
-              <div className="font-display text-xl font-bold text-brand">{p.title}</div>
+            <div key={p.title}>
+              <h3 className="font-display text-xl font-bold text-navy">{p.title}</h3>
               <ul className="mt-5 space-y-3">
                 {p.points.map((point) => (
-                  <li key={point} className="flex items-start gap-2 text-sm text-ink/65">
+                  <li key={point} className="flex items-start gap-2 text-sm text-subtle">
                     <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent-blue" />
                     {point}
                   </li>
@@ -109,22 +112,20 @@ function Industries() {
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
+      <Section tone="navy" className="navy-grid">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-              Special handling
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand">
+            <Eyebrow light>Special handling</Eyebrow>
+            <SectionTitle light className="mt-4">
               Temperature, hazard class and security, covered.
-            </h2>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            </SectionTitle>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {capabilities.map((c) => (
-                <div key={c.title} className="rounded-2xl border border-white/70 bg-white/50 p-4">
-                  <div className="font-display text-sm font-semibold text-brand">{c.title}</div>
-                  <p className="mt-1 text-xs leading-relaxed text-ink/65">{c.copy}</p>
+                <div key={c.title} className="border-t border-white/10 pt-4">
+                  <h3 className="font-display text-sm font-bold text-white">{c.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-navy-muted">{c.copy}</p>
                 </div>
               ))}
             </div>
@@ -135,60 +136,53 @@ function Industries() {
             width={1600}
             height={1000}
             loading="lazy"
-            className="aspect-[16/10] w-full rounded-2xl border border-white/60 object-cover"
+            className="aspect-[16/10] w-full rounded-xl object-cover"
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
-          Outcomes on real lanes
-        </h2>
-        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+      <Section tone="white">
+        <SectionTitle>Outcomes on real lanes</SectionTitle>
+        <div className="mt-10 grid gap-8 lg:grid-cols-3">
           {caseStudies.map((c) => (
-            <article
-              key={c.title}
-              className="glass flex flex-col rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]"
-            >
-              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-accent-blue">
+            <article key={c.title} className="flex flex-col border-t-2 border-accent-blue pt-5">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-blue">
                 {c.sector}
               </span>
-              <h3 className="mt-3 font-display text-xl font-bold text-brand">{c.title}</h3>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-ink/65">{c.copy}</p>
-              <div className="mt-6 border-t border-white/60 pt-4 font-display text-sm font-semibold text-mint">
+              <h3 className="mt-3 font-display text-xl font-bold text-navy">{c.title}</h3>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-subtle">{c.copy}</p>
+              <div className="mt-6 border-t border-line pt-4 text-sm font-semibold text-navy">
                 {c.result}
               </div>
             </article>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <Section tone="mist">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((t) => (
-            <figure
-              key={t.name}
-              className="glass flex flex-col rounded-3xl border border-white/60 p-6 shadow-[var(--shadow-soft)]"
-            >
-              <blockquote className="flex-1 text-sm leading-relaxed text-ink/75">
+            <figure key={t.name} className="flex flex-col border-t border-line pt-5">
+              <blockquote className="flex-1 text-sm leading-relaxed text-ink">
                 “{t.quote}”
               </blockquote>
-              <figcaption className="mt-5 border-t border-white/60 pt-4">
-                <div className="font-display text-sm font-semibold text-brand">{t.name}</div>
-                <div className="mt-0.5 text-xs text-ink/55">{t.role}</div>
+              <figcaption className="mt-5">
+                <div className="font-display text-sm font-semibold text-navy">{t.name}</div>
+                <div className="mt-0.5 text-xs text-subtle">{t.role}</div>
               </figcaption>
             </figure>
           ))}
         </div>
-        <div className="mt-10 text-center">
-          <Link
-            to="/contact"
-            className="inline-block rounded-xl bg-accent-blue px-7 py-3.5 text-sm font-semibold text-mist shadow-[var(--shadow-accent)] transition hover:-translate-y-0.5"
-          >
-            Discuss your sector
-          </Link>
-        </div>
-      </section>
+      </Section>
+
+      <CtaBand
+        title="Discuss your sector"
+        copy="We build the handling around the risk rather than the box."
+      >
+        <Link to="/contact" className={btnCta}>
+          Discuss your sector
+        </Link>
+      </CtaBand>
     </div>
   );
 }

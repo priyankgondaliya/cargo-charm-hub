@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter, Backdrop } from "../components/site/SiteShell";
+import { Toaster } from "sileo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -135,6 +136,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <SiteFooter />
+        <Toaster position="top-right" theme="dark" offset={{ top: 96 }} />
       </div>
     </QueryClientProvider>
   );

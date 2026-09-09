@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "sileo/styles.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -207,5 +208,9 @@ html {
 @layer base {
   body {
     font-family: var(--font-sans);
+  }
+
+  [data-sileo-viewport] {
+    z-index: 80;
   }
 }

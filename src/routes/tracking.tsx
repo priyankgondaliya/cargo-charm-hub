@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PackageSearch, Plane, ShieldCheck, Truck } from "lucide-react";
+import { PackageSearch, ShieldCheck, Ship, Truck } from "lucide-react";
 import { PageHero } from "@/components/site/SiteShell";
 
 export const Route = createFileRoute("/tracking")({
   head: () => ({
     meta: [
-      { title: "Track a Shipment — Velora Air" },
+      { title: "Track a Shipment — LogiEdge Consulting" },
       {
         name: "description",
         content:
-          "Enter your Velora VL reference to see collection, screening, flight, clearance and delivery milestones in real time.",
+          "Enter your LogiEdge LE reference to see collection, gateway, sailing or flight, clearance and delivery milestones in real time.",
       },
-      { property: "og:title", content: "Track a Shipment — Velora Air" },
+      { property: "og:title", content: "Track a Shipment — LogiEdge Consulting" },
       {
         property: "og:description",
-        content: "Live milestone tracking for Velora Air consignments worldwide.",
+        content: "Live milestone tracking for LogiEdge Consulting consignments worldwide — air, sea and road.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,10 +25,10 @@ export const Route = createFileRoute("/tracking")({
 });
 
 const demoMilestones = [
-  { icon: Truck, label: "Collected", detail: "Heathrow TW6 · dedicated van", time: "06:18", done: true },
-  { icon: ShieldCheck, label: "Screened & built up", detail: "Known-consignor screening passed", time: "07:42", done: true },
-  { icon: Plane, label: "Departed", detail: "LHR → DXB · VL flight tender", time: "11:05", done: true },
-  { icon: PackageSearch, label: "In clearance", detail: "Import entry filed at destination", time: "—", done: false },
+  { icon: Truck, label: "Collected", detail: "Birmingham B33 · dedicated truck", time: "09:40", done: true },
+  { icon: ShieldCheck, label: "Gated in", detail: "Felixstowe FXT · 1 × 40HC", time: "14:15", done: true },
+  { icon: Ship, label: "Sailed", detail: "FXT → LOS · weekly ocean sailing", time: "18:02", done: true },
+  { icon: PackageSearch, label: "In clearance", detail: "Import entry filed, inland haulage booked", time: "—", done: false },
 ];
 
 function Tracking() {
@@ -40,7 +40,7 @@ function Tracking() {
       <PageHero
         eyebrow="Tracking"
         title="Follow every milestone from collection to POD."
-        copy="Enter the VL reference from your booking confirmation. You will see collection, screening, departure, clearance and delivery updates as they happen."
+        copy="Enter the LE reference from your booking confirmation. You will see collection, gateway handoff, departure or sailing, clearance and delivery updates as they happen."
       />
 
       <section className="mx-auto max-w-7xl px-6 pt-12">
@@ -59,7 +59,7 @@ function Tracking() {
                 setSearched(false);
               }}
               className="flex-1 rounded-xl border border-white/70 bg-white/60 px-4 py-3.5 text-sm font-medium tracking-wide text-brand outline-none transition placeholder:text-ink/45 focus:border-accent-blue"
-              placeholder="e.g. VL-88231"
+              placeholder="e.g. LE-88231"
               aria-label="Shipment reference"
             />
             <button
@@ -70,7 +70,7 @@ function Tracking() {
             </button>
           </form>
           <p className="mt-3 text-xs text-ink/50">
-            References look like VL-88231 and arrive by email when we book the collection.
+            References look like LE-88231 and arrive by email when we book the collection.
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ function Tracking() {
                   Live consignment
                 </div>
                 <div className="mt-1 font-display text-2xl font-semibold">
-                  {ref.trim()} · Heathrow → Dubai
+                  {ref.trim()} · Felixstowe → Lagos
                 </div>
               </div>
               <span className="rounded-full bg-mint/20 px-3 py-1 text-xs font-semibold text-mint">
@@ -128,7 +128,7 @@ function Tracking() {
             Need help locating a shipment?
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-ink/65">
-            Call the ops desk with your VL reference and we will pull the file while you are on the
+            Call the ops desk with your LE reference and we will pull the file while you are on the
             line.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">

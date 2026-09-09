@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
+import { brand, footerServices } from "@/data/site";
+import { BrandLockup, LogoMark } from "@/components/site/Logo";
 
 export const navLinks = [
   { to: "/", label: "Home" },
@@ -19,30 +21,27 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-2 text-xs">
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-2">
-              <MapPin className="size-3.5" /> Cargo Centre, Shoreham Road, Heathrow TW6 3UA
+              <MapPin className="size-3.5" /> {brand.address}
             </span>
             <span className="inline-flex items-center gap-2">
-              <Mail className="size-3.5" /> hello@veloraair.co.uk
+              <Mail className="size-3.5" /> {brand.email}
             </span>
           </div>
           <span className="inline-flex items-center gap-2 font-semibold text-mist">
-            <Phone className="size-3.5" /> +44 (0)20 8069 4410
+            <Phone className="size-3.5" /> {brand.phone}
           </span>
         </div>
       </div>
 
       <div className="px-4 pt-3 md:px-6">
         <nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-white/60 px-5 py-3 shadow-[var(--shadow-soft)]">
-          <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <div className="grid size-10 place-items-center rounded-xl bg-brand font-display text-lg font-bold text-mist">
-              V
-            </div>
-            <span className="font-display text-lg font-semibold leading-none tracking-tight text-brand">
-              Velora Air
-              <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.18em] text-ink/50">
-                Airfreight &amp; Courier
-              </span>
-            </span>
+          <Link
+            to="/"
+            className="flex items-center"
+            onClick={() => setOpen(false)}
+            aria-label="LogiEdge Consulting home"
+          >
+            <BrandLockup />
           </Link>
 
           <div className="hidden items-center gap-7 text-sm font-medium text-ink/70 lg:flex">
@@ -108,10 +107,21 @@ export function SiteFooter() {
     <footer className="relative z-10 mt-20 bg-brand text-mist/70">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4">
         <div>
-          <div className="font-display text-xl font-semibold text-mist">Velora Air</div>
+          <div className="flex items-center gap-3">
+            <LogoMark variant="onDark" className="size-10 shrink-0" />
+            <div>
+              <div className="font-display text-xl font-semibold leading-none tracking-tight text-mist">
+                Logi<span className="text-mint">Edge</span>
+              </div>
+              <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-mist/50">
+                Consulting
+              </div>
+            </div>
+          </div>
           <p className="mt-3 text-sm leading-relaxed">
-            An independent UK airfreight forwarder and courier network, moving urgent cargo and
-            parcels from Heathrow, Birmingham and Manchester to over 140 countries.
+            An independent UK freight forwarder moving cargo by air, sea, road and local delivery —
+            from a same-day parcel to a full container — through Heathrow, Birmingham, Manchester
+            and the UK&apos;s deep-sea ports.
           </p>
         </div>
         <div>
@@ -133,12 +143,9 @@ export function SiteFooter() {
             Services
           </div>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>Express air freight</li>
-            <li>Same-day courier</li>
-            <li>Customs clearance</li>
-            <li>ETSF bonded warehousing</li>
-            <li>E-commerce fulfilment</li>
-            <li>Sea &amp; road freight</li>
+            {footerServices.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
         <div>
@@ -146,16 +153,16 @@ export function SiteFooter() {
             Get in touch
           </div>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>Cargo Centre, Shoreham Road, Heathrow TW6 3UA</li>
-            <li>+44 (0)20 8069 4410</li>
-            <li>hello@veloraair.co.uk</li>
+            <li>{brand.address}</li>
+            <li>{brand.phone}</li>
+            <li>{brand.email}</li>
             <li>Ops desk open 24/7</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-6 py-6 text-xs sm:flex-row">
-          <span>© 2026 Velora Air Logistics Ltd. Registered in England &amp; Wales.</span>
+          <span>© 2026 {brand.legal}. All rights reserved.</span>
           <span>IATA · BIFA · AEO(F) · ISO 9001 accredited</span>
         </div>
       </div>

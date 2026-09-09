@@ -1,20 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/site/SiteShell";
+import { brand } from "@/data/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Quotes — Velora Air Freight Desk" },
+      { title: "Contact & Quotes — LogiEdge Consulting" },
       {
         name: "description",
         content:
-          "Request a same-day airfreight or courier quote from Velora Air. Ops desk open 24/7 at Heathrow, Birmingham and Manchester.",
+          "Request a same-day quote for air, sea, road or local delivery from LogiEdge Consulting. Ops desk open 24/7 at Heathrow, Birmingham and Manchester.",
       },
-      { property: "og:title", content: "Contact Velora Air" },
+      { property: "og:title", content: "Contact LogiEdge Consulting" },
       {
         property: "og:description",
-        content: "Same-working-day quotes for airfreight, courier, customs and warehousing.",
+        content: "Same-working-day quotes for air freight, sea freight, road, customs and warehousing.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -26,15 +27,19 @@ export const Route = createFileRoute("/contact")({
 const offices = [
   {
     title: "Heathrow HQ",
-    lines: ["Cargo Centre, Shoreham Road", "Heathrow TW6 3UA", "Main ops & brokerage desk"],
+    lines: ["Cargo Centre, Shoreham Road", "Heathrow TW6 3UA", "Main ops, air cargo & brokerage"],
   },
   {
     title: "Birmingham",
-    lines: ["Cargo Village, Birmingham Airport", "B26 3QJ", "Midlands collections & build-up"],
+    lines: ["Cargo Village, Birmingham Airport", "B26 3QJ", "ETSF warehouse, road hub & inland clearance"],
   },
   {
     title: "Manchester",
-    lines: ["World Freight Terminal", "Manchester M90 5BF", "North West & Ireland lanes"],
+    lines: ["World Freight Terminal", "Manchester M90 5BF", "North West air, Irish Sea and road"],
+  },
+  {
+    title: "Port network",
+    lines: ["Felixstowe · Southampton · London Gateway", "Tilbury · Liverpool", "FCL, LCL, RoRo and short-sea Europe"],
   },
 ];
 
@@ -44,7 +49,7 @@ function Contact() {
       <PageHero
         eyebrow="Contact"
         title="Tell us the lane. We'll quote it today."
-        copy="Send weight, dimensions and destination — our desk returns an all-in GBP rate the same working day, with no surprise handling fees."
+        copy="Send weight, dimensions, destination and preferred mode — our desk returns an all-in GBP rate the same working day, with no surprise handling fees."
       />
 
       <section className="mx-auto max-w-7xl px-6 pt-12">
@@ -54,28 +59,28 @@ function Contact() {
               Speak to the desk
             </h2>
             <p className="mt-3 text-base leading-relaxed text-ink/70">
-              Urgent AOG and medical bookings are answered around the clock. Standard quotes go out
-              Monday to Friday before close of play.
+              Urgent AOG, medical and same-day bookings are answered around the clock. Standard air,
+              sea and road quotes go out Monday to Friday before close of play.
             </p>
 
             <div className="mt-8 space-y-4">
               <a
-                href="tel:+442080694410"
+                href={brand.phoneHref}
                 className="flex items-start gap-3 rounded-2xl border border-white/70 bg-white/50 p-4 transition hover:bg-white/70"
               >
                 <Phone className="mt-0.5 size-5 text-accent-blue" strokeWidth={1.75} />
                 <div>
-                  <div className="font-display text-sm font-semibold text-brand">+44 (0)20 8069 4410</div>
+                  <div className="font-display text-sm font-semibold text-brand">{brand.phone}</div>
                   <div className="mt-0.5 text-xs text-ink/55">24/7 operations desk</div>
                 </div>
               </a>
               <a
-                href="mailto:hello@veloraair.co.uk"
+                href={`mailto:${brand.email}`}
                 className="flex items-start gap-3 rounded-2xl border border-white/70 bg-white/50 p-4 transition hover:bg-white/70"
               >
                 <Mail className="mt-0.5 size-5 text-accent-blue" strokeWidth={1.75} />
                 <div>
-                  <div className="font-display text-sm font-semibold text-brand">hello@veloraair.co.uk</div>
+                  <div className="font-display text-sm font-semibold text-brand">{brand.email}</div>
                   <div className="mt-0.5 text-xs text-ink/55">Quotes, accounts &amp; paperwork</div>
                 </div>
               </a>
@@ -112,13 +117,29 @@ function Contact() {
             <div className="grid gap-3 sm:grid-cols-2">
               <input
                 className="rounded-xl border border-white/70 bg-white/60 px-4 py-3 text-sm text-brand outline-none transition placeholder:text-ink/45 focus:border-accent-blue"
-                placeholder="Origin (city or airport)"
+                placeholder="Origin (city, port or airport)"
               />
               <input
                 className="rounded-xl border border-white/70 bg-white/60 px-4 py-3 text-sm text-brand outline-none transition placeholder:text-ink/45 focus:border-accent-blue"
                 placeholder="Destination"
               />
             </div>
+            <select
+              className="rounded-xl border border-white/70 bg-white/60 px-4 py-3 text-sm text-brand outline-none transition focus:border-accent-blue"
+              defaultValue=""
+              aria-label="Preferred mode"
+            >
+              <option value="" disabled>
+                Preferred mode
+              </option>
+              <option>Air freight</option>
+              <option>Sea freight (FCL / LCL / RoRo)</option>
+              <option>Road &amp; truck</option>
+              <option>Local / same-day</option>
+              <option>Warehousing</option>
+              <option>Customs only</option>
+              <option>Not sure — recommend a mode</option>
+            </select>
             <textarea
               rows={4}
               className="resize-none rounded-xl border border-white/70 bg-white/60 px-4 py-3 text-sm text-brand outline-none transition placeholder:text-ink/45 focus:border-accent-blue"
@@ -138,8 +159,8 @@ function Contact() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pt-16 pb-8">
-        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Our UK desks</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <h2 className="font-display text-3xl font-bold tracking-tight text-brand">Our UK network</h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {offices.map((o) => (
             <div
               key={o.title}

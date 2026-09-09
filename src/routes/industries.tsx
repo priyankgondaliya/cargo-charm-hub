@@ -6,17 +6,17 @@ import warehouse from "@/assets/warehouse.jpg";
 export const Route = createFileRoute("/industries")({
   head: () => ({
     meta: [
-      { title: "Industries We Fly For — Aerospace, Pharma, Retail | Velora Air" },
+      { title: "Industries We Serve — Aerospace, Pharma, Retail | LogiEdge Consulting" },
       {
         name: "description",
         content:
-          "Airfreight and courier solutions for aerospace AOG, pharmaceuticals, e-commerce, perishables, automotive and exhibition cargo across the UK and worldwide.",
+          "Air, sea, road and local logistics for aerospace, pharmaceuticals, e-commerce, perishables, automotive, manufacturing and project cargo across the UK and worldwide.",
       },
-      { property: "og:title", content: "Industries — Velora Air" },
+      { property: "og:title", content: "Industries — LogiEdge Consulting" },
       {
         property: "og:description",
         content:
-          "Sector-specific airfreight for AOG spares, cold-chain pharma, perishables, e-commerce and project cargo.",
+          "Sector-specific freight for AOG spares, cold-chain pharma, ocean imports, e-commerce and project cargo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -47,10 +47,19 @@ const playbooks = [
   {
     title: "Retail playbook",
     points: [
-      "Peak capacity reserved before Black Friday",
-      "Store and DC timed deliveries",
-      "Returns and reverse logistics",
-      "Sample and lookbook hand-carry",
+      "Peak air capacity reserved before Black Friday",
+      "Weekly ocean replenishment from the Far East",
+      "Store and DC timed deliveries by road",
+      "Returns, reverse logistics and sample hand-carry",
+    ],
+  },
+  {
+    title: "Import & ocean playbook",
+    points: [
+      "Weekly FCL and LCL from the Far East, India and Africa",
+      "Inland ETSF clearance to avoid quay rent",
+      "Reefer and out-of-gauge surveys before the box is booked",
+      "Store and DC feeds by road once the container is destuffed",
     ],
   },
 ];
@@ -61,7 +70,7 @@ function Industries() {
       <PageHero
         eyebrow="Industries"
         title="Cargo with a deadline attached."
-        copy="Different sectors fail in different ways. A grounded aircraft, a broken cold chain and a missed peak week all cost money, so we build the handling around the risk rather than the box."
+        copy="Different sectors fail in different ways. A grounded aircraft, a box sitting on the quay and a missed production window all cost money, so we build the handling around the risk rather than the box."
       />
 
       <section className="mx-auto max-w-7xl px-6 pt-12">
@@ -85,7 +94,7 @@ function Industries() {
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
           Pre-agreed handling notes so your first booking already knows the rules of your industry.
         </p>
-        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {playbooks.map((p) => (
             <div key={p.title} className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)]">
               <div className="font-display text-xl font-bold text-brand">{p.title}</div>
@@ -122,7 +131,7 @@ function Industries() {
           </div>
           <img
             src={warehouse}
-            alt="Bonded warehouse team handling screened air cargo pallets"
+            alt="Warehouse team handling freight for air, sea and road distribution"
             width={1600}
             height={1000}
             loading="lazy"
@@ -133,7 +142,7 @@ function Industries() {
 
       <section className="mx-auto max-w-7xl px-6 pt-16">
         <h2 className="font-display text-3xl font-bold tracking-tight text-brand">
-          Outcomes on real flights
+          Outcomes on real lanes
         </h2>
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
           {caseStudies.map((c) => (

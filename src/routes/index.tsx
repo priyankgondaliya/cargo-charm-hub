@@ -1,9 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, ShieldCheck, Globe2, Boxes, Leaf } from "lucide-react";
-import airCargo from "@/assets/air-cargo.jpg";
+import portNight from "@/assets/port-night.jpg";
 import courierVan from "@/assets/courier-van.jpg";
 import warehouse from "@/assets/warehouse.jpg";
+import depotDawn from "@/assets/depot-dawn.jpg";
 import {
+  brand,
+  modes,
   services,
   stats,
   steps,
@@ -22,17 +25,17 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Velora Air — Airfreight & Courier Services from Heathrow" },
+      { title: `${brand.name} — Air, Sea, Road & Local Freight from the UK` },
       {
         name: "description",
         content:
-          "UK airfreight forwarder and courier network. Express air cargo, same-day couriers, customs clearance and bonded warehousing from Heathrow, Birmingham and Manchester.",
+          "Independent UK freight forwarder for air, sea, road and local delivery. FCL and LCL ocean, express air cargo, trucking, same-day couriers, customs clearance and bonded warehousing.",
       },
-      { property: "og:title", content: "Velora Air — Airfreight & Courier from Heathrow" },
+      { property: "og:title", content: `${brand.name} — Air, Sea, Road & Local Freight` },
       {
         property: "og:description",
         content:
-          "Express air cargo, same-day couriers, CDS customs clearance and ETSF bonded warehousing to 140+ countries.",
+          "From a same-day parcel to a full container. Air, sea, road and local logistics with in-house customs and 24/7 operations.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -44,19 +47,18 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="mx-auto max-w-7xl px-6 pt-10">
-      {/* hero */}
       <section className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="rise">
           <span className="glass inline-flex items-center gap-2 rounded-full border border-white/60 px-4 py-1.5 text-xs font-medium text-ink/80">
-            <span className="size-2 rounded-full bg-mint" /> Heathrow · Birmingham · Manchester
+            <span className="size-2 rounded-full bg-mint" /> Air · Sea · Road · Local
           </span>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[1.02] tracking-tight text-brand md:text-6xl">
-            Airfreight and couriers that catch the next flight out.
+            Freight that moves by air, sea, road and the last mile.
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink/70">
-            Velora Air is an independent UK freight forwarder. We collect within the hour, screen and
-            build up your cargo airside, clear it through customs in-house and deliver door to door
-            in over 140 countries.
+            {brand.name} is an independent UK forwarder. We do not just take cargo from A to B —
+            we design the lane around your business, clear it in-house and deliver door to door in
+            over 140 countries.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
@@ -84,8 +86,8 @@ function Index() {
 
         <div className="relative">
           <img
-            src={airCargo}
-            alt="Cargo pallets being loaded onto a freighter aircraft at dusk"
+            src={portNight}
+            alt="Night view of a deep-sea container terminal with gantry cranes and stacked boxes"
             width={1600}
             height={1000}
             className="floaty aspect-[16/11] w-full rounded-3xl border border-white/60 object-cover shadow-[var(--shadow-lift)]"
@@ -95,16 +97,15 @@ function Index() {
               Live consignment
             </div>
             <div className="mt-1 font-display text-base font-semibold text-mist">
-              VL-88231 · LHR → DXB · 640 kg
+              LE-44108 · FXT → LOS · 1 × 40HC
             </div>
             <div className="mt-3 flex items-center gap-3 text-sm text-mist/80">
-              <span className="size-2.5 rounded-full bg-mint" /> Departed 04:12 · Cleared Dubai 19:30
+              <span className="size-2.5 rounded-full bg-mint" /> On vessel · Inland clearance booked
             </div>
           </div>
         </div>
       </section>
 
-      {/* lane marquee */}
       <div className="glass mt-20 overflow-hidden rounded-2xl border border-white/60 py-3">
         <div className="marquee flex w-max whitespace-nowrap">
           {[...lanes, ...lanes].map((lane, i) => (
@@ -115,23 +116,53 @@ function Index() {
         </div>
       </div>
 
-      {/* why us */}
+      <section className="mt-16">
+        <div className="max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+            Every mode
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
+            One account. Air, water, truck and local.
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-ink/70">
+            Choose the mode that fits the clock and the budget — or let us combine them. The same
+            coordinator books the flight, the vessel, the truck and the last mile.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {modes.map((m) => (
+            <Link
+              key={m.slug}
+              to="/services"
+              hash={m.slug}
+              className="glass rounded-3xl border border-white/60 p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-accent-blue/40"
+            >
+              <div className="grid size-12 place-items-center rounded-xl bg-accent-blue/10">
+                <m.icon className="size-6 text-accent-blue" strokeWidth={1.75} />
+              </div>
+              <div className="mt-4 font-display text-lg font-semibold text-brand">{m.title}</div>
+              <p className="mt-2 text-sm leading-relaxed text-ink/65">{m.copy}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="mt-16 grid gap-4 md:grid-cols-3">
         {[
           {
             icon: Clock,
             t: "Collected in 60 minutes",
-            c: "A dedicated courier is with you within the hour across London, and same day nationwide.",
+            c: "A dedicated courier is with you within the hour across London, and same day nationwide for parcels, pallets and full loads.",
           },
           {
             icon: ShieldCheck,
             t: "Customs handled in-house",
-            c: "Our own CDS brokers file the entries, so nothing waits on a third party at the border.",
+            c: "Our own CDS brokers file at airports and ports, then clear inland so cargo is not paying quay rent or ramp storage.",
           },
           {
             icon: Globe2,
-            t: "One desk, every mode",
-            c: "Air, sea, road and fulfilment on one account, with one person answering the phone.",
+            t: "Bespoke, not one-size-fits-all",
+            c: "We listen first, then design air, sea, road or a mix around your product, your legislation and your cost.",
           },
         ].map((f) => (
           <div
@@ -147,7 +178,6 @@ function Index() {
         ))}
       </section>
 
-      {/* services */}
       <section className="mt-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -155,7 +185,7 @@ function Index() {
               What we do
             </span>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
-              From one envelope to a full charter.
+              From a small parcel to a full container.
             </h2>
           </div>
           <Link
@@ -191,7 +221,6 @@ function Index() {
         </div>
       </section>
 
-      {/* courier band */}
       <section className="mt-20">
         <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
           <img
@@ -204,15 +233,15 @@ function Index() {
           />
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-              Courier division
+              Local & last mile
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
               The first and last mile, run by us.
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
-              Airfreight only works if the parcel reaches the aircraft. Our own fleet of vans and
-              onboard couriers covers collection, airport delivery, import distribution and returns —
-              so a single company is accountable from your desk to the consignee's.
+              International freight only works if someone collects it and someone delivers it. Our
+              own vans cover same-day London, nationwide next-day and timed store drops — so one
+              company is accountable from your dock to the consignee&apos;s.
             </p>
             <div className="mt-8 grid grid-cols-3 gap-4">
               <div>
@@ -232,22 +261,54 @@ function Index() {
         </div>
       </section>
 
-      {/* hubs */}
+      <section className="mt-20">
+        <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
+              Road & truck
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
+              Full loads, part loads and UK pallets.
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
+              FTL and LTL across the UK and Europe, overnight pallet distribution, and dedicated
+              vehicles from a courier van to a low-loader. Transit times are set to your dock, not
+              a generic trunking timetable.
+            </p>
+            <Link
+              to="/services"
+              hash="road"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-blue"
+            >
+              Explore road freight <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <img
+            src={depotDawn}
+            alt="Trucks on the loading bays of a UK distribution warehouse"
+            width={1600}
+            height={1000}
+            loading="lazy"
+            className="aspect-[16/10] w-full rounded-2xl border border-white/60 object-cover lg:order-none"
+          />
+        </div>
+      </section>
+
       <section className="mt-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-              UK airport hubs
+              UK network
             </span>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
-              Three gateways. One account.
+              Airports, ports and depots. One account.
             </h2>
           </div>
           <Link to="/about" className="inline-flex items-center gap-2 text-sm font-semibold text-accent-blue">
             About our network <ArrowRight className="size-4" />
           </Link>
         </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {hubs.map((h) => (
             <div
               key={h.code}
@@ -266,13 +327,13 @@ function Index() {
         </div>
       </section>
 
-      {/* process */}
       <section className="mt-20">
         <h2 className="font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
-          How a shipment flies
+          How a shipment moves
         </h2>
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
-          Four clear stages from rate to POD — with live status your customers can follow.
+          Four clear stages from rate to POD — whether the cargo flies, sails or rolls — with live
+          status your customers can follow.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
@@ -290,7 +351,6 @@ function Index() {
         </div>
       </section>
 
-      {/* corridors */}
       <section className="mt-20">
         <div className="glass rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:p-12">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -303,8 +363,8 @@ function Index() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-ink/65">
-              Scheduled capacity on the corridors UK shippers use most — with charters when the
-              calendar gets tight.
+              Scheduled ocean, air and road capacity on the corridors UK shippers use most — with
+              charters and dedicated trucks when the calendar gets tight.
             </p>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -325,7 +385,6 @@ function Index() {
         </div>
       </section>
 
-      {/* capabilities */}
       <section className="mt-20">
         <div className="text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
@@ -348,19 +407,19 @@ function Index() {
         </div>
       </section>
 
-      {/* warehouse band */}
       <section className="mt-20">
         <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-              Bonded warehousing
+              Warehousing & fulfilment
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
-              35,000 sq ft next to the ramp.
+              35,000 sq ft, inland of the ports.
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
-              ETSF temporary storage, pick-and-pack, airline build-up and screening under the same
-              roof as the ops desk — so uncleared freight does not sit waiting for another contractor.
+              ETSF temporary storage, pick-and-pack, container stuffing and airline build-up under
+              the same roof as the ops desk. Pull boxes off the quay, clear inland and feed stores
+              without another contractor in the middle.
             </p>
             <Link
               to="/services"
@@ -372,7 +431,7 @@ function Index() {
           </div>
           <img
             src={warehouse}
-            alt="Bonded warehouse team handling screened air cargo pallets"
+            alt="Warehouse team palletising freight for onward air, sea and road distribution"
             width={1600}
             height={1000}
             loading="lazy"
@@ -381,7 +440,6 @@ function Index() {
         </div>
       </section>
 
-      {/* service levels */}
       <section className="mt-20">
         <div className="max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
@@ -412,15 +470,14 @@ function Index() {
         </div>
       </section>
 
-      {/* industries preview */}
       <section className="mt-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-              Sectors we fly for
+              Industries we serve
             </span>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
-              Cargo that cannot wait.
+              Cargo with a deadline attached.
             </h2>
           </div>
           <Link
@@ -443,14 +500,13 @@ function Index() {
         </div>
       </section>
 
-      {/* case studies */}
       <section className="mt-20">
         <div className="text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
             Results
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
-            Outcomes on real flights.
+            Outcomes on real lanes.
           </h2>
         </div>
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -472,7 +528,6 @@ function Index() {
         </div>
       </section>
 
-      {/* sustainability */}
       <section className="mt-20">
         <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-[auto_1fr] lg:items-center lg:p-12">
           <div className="flex size-20 items-center justify-center rounded-2xl bg-mint/15">
@@ -483,18 +538,17 @@ function Index() {
               Responsible freight
             </span>
             <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-brand md:text-4xl">
-              Consolidate where it helps. Report what you need.
+              Sea and road where the clock allows. Air when it does not.
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink/70">
-              We favour consolidation and short-sea or road where the clock allows, and can provide
-              lane-level carbon estimates for your ESG reporting — without turning every urgent AOG
-              into a lecture.
+              We favour ocean, short-sea and road consolidation when the deadline permits, and can
+              provide lane-level carbon estimates for your ESG reporting — without turning every
+              urgent AOG into a lecture.
             </p>
           </div>
         </div>
       </section>
 
-      {/* credentials */}
       <section className="mt-20">
         <div className="text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
@@ -517,17 +571,16 @@ function Index() {
         </div>
       </section>
 
-      {/* mid cta */}
       <section className="mt-20">
         <div className="relative overflow-hidden rounded-3xl border border-white/40 bg-brand px-8 py-14 text-center shadow-[var(--shadow-lift)] lg:px-16">
           <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent-blue/40 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-mint/25 blur-3xl" />
           <h2 className="relative font-display text-3xl font-bold tracking-tight text-mist md:text-4xl">
-            Need a rate before the next uplift?
+            Need a rate on air, sea or road today?
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-base leading-relaxed text-mist/75">
             Send weight, dimensions and destination — our desk returns an all-in GBP quote the same
-            working day.
+            working day, with the mode that actually fits.
           </p>
           <Link
             to="/contact"
@@ -539,7 +592,6 @@ function Index() {
         </div>
       </section>
 
-      {/* testimonials */}
       <section className="mt-20">
         <div className="text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
@@ -567,7 +619,6 @@ function Index() {
         </div>
       </section>
 
-      {/* faq */}
       <section className="mt-20">
         <h2 className="font-display text-3xl font-bold tracking-tight text-brand md:text-4xl">
           Questions, answered
@@ -582,15 +633,14 @@ function Index() {
         </div>
       </section>
 
-      {/* cta */}
       <section className="mt-20">
         <div className="rounded-3xl bg-brand p-10 text-center shadow-[var(--shadow-lift)] md:p-14">
           <h2 className="font-display text-3xl font-bold tracking-tight text-mist md:text-4xl">
-            Need it there tomorrow morning?
+            Tell us the cargo. We will pick the mode.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mist/70">
             Send us the weight, dimensions and destination. Our desk quotes the same working day —
-            and books the next available flight.
+            air, sea, road or a combination, booked on one account.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

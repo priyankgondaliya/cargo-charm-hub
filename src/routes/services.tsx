@@ -6,17 +6,17 @@ import { capabilities, serviceLevels, services, steps } from "@/data/site";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Air Freight, Courier & Customs Clearance | Velora Air" },
+      { title: "Services — Air, Sea, Road & Local Freight | LogiEdge Consulting" },
       {
         name: "description",
         content:
-          "Express air freight, same-day courier, CDS customs clearance, ETSF bonded warehousing, sea and road freight and e-commerce fulfilment from UK airports.",
+          "Air freight, FCL and LCL sea freight, UK and European road, same-day local delivery, CDS customs clearance and bonded warehousing from one UK forwarder.",
       },
-      { property: "og:title", content: "Velora Air Services" },
+      { property: "og:title", content: "LogiEdge Consulting Services" },
       {
         property: "og:description",
         content:
-          "Air freight, couriers, customs brokerage, bonded warehousing, sea and road freight on one UK account.",
+          "Air, sea, road and local freight plus customs brokerage and warehousing on one UK account.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,50 +32,50 @@ const detail: Record<string, string[]> = {
     "Full and part charter, including out-of-gauge loads",
     "Airline build-up, screening and dangerous goods acceptance",
   ],
+  "sea-freight": [
+    "FCL 20ft, 40ft and high-cube bookings on major lines",
+    "Weekly LCL groupage from a single carton to a shared container",
+    "RoRo for vehicles, plant and cargo that will not box",
+    "Port-to-port or door-to-door with inland clearance and marine insurance",
+  ],
+  road: [
+    "UK overnight and economy pallet distribution",
+    "FTL, LTL and dedicated European groupage",
+    "Tail-lift, curtain-side, reefer, low-loader and skeleton",
+    "E-commerce fulfilment, timed docks and returns processing",
+  ],
   courier: [
     "60-minute collection across London and the M25",
-    "Same-day dedicated van nationwide",
+    "Same-day dedicated van nationwide and next-day economy",
     "Onboard courier accompanying high-value cargo",
     "Timed morning delivery with photographic and signed POD",
   ],
   customs: [
-    "Import and export declarations filed on CDS",
+    "Import and export declarations filed on CDS at airports and ports",
     "T1 transit, NCTS and GVMS movement references",
-    "Deferment, postponed VAT and inward processing relief",
-    "Certificates of origin, EUR1 and ATA carnet handling",
+    "Inland ETSF clearance to avoid quay rent and ramp storage",
+    "Certificates of origin, EUR1, ATA carnets and letters of credit",
   ],
   warehousing: [
-    "35,000 sq ft ETSF temporary storage near Heathrow",
-    "Pallet racking, pick and pack and kitting",
+    "35,000 sq ft ETSF temporary storage in the Midlands",
+    "Pallet racking, pick and pack, kitting and container stuffing",
     "Palletising, shrink-wrapping and airline-ready build-up",
-    "Stock reporting and scheduled onward distribution",
-  ],
-  "sea-freight": [
-    "FCL 20ft, 40ft and high cube bookings",
-    "Weekly LCL groupage from a single carton",
-    "Port-to-port or full door-to-door with clearance",
-    "Marine insurance arranged on request",
-  ],
-  road: [
-    "UK overnight and economy pallet distribution",
-    "European groupage and dedicated full loads",
-    "E-commerce fulfilment with order-level scanning",
-    "Returns processing and inventory reconciliation",
+    "Stock reporting and scheduled onward air, sea or road distribution",
   ],
 };
 
 const addons = [
   {
     t: "Cargo insurance",
-    c: "All-risk cover arranged against your declared value, with claims handled by a named contact.",
+    c: "All-risk cover for air, sea and road, including marine open cover, with claims handled by a named contact.",
   },
   {
     t: "Packaging & crating",
-    c: "Export crates, ISPM-15 timber and cool-chain packaging built to airline standards.",
+    c: "Export crates, ISPM-15 timber, on-site packing and cool-chain packaging built to airline and ocean standards.",
   },
   {
     t: "Onboard courier",
-    c: "A Velora courier accompanies the bag or case on the passenger flight for maximum control.",
+    c: "A LogiEdge courier accompanies the bag or case on the passenger flight for maximum control.",
   },
   {
     t: "API & EDI hooks",
@@ -89,7 +89,7 @@ function Services() {
       <PageHero
         eyebrow="Our services"
         title="Every mode, every document, one accountable team."
-        copy="Whether it is a single envelope leaving Heathrow tonight or a monthly container programme, the same coordinator books it, clears it and delivers it."
+        copy="Whether it is a same-day parcel leaving London tonight or a monthly container programme from Felixstowe, the same coordinator books it, clears it and delivers it."
       />
 
       <section className="mx-auto max-w-7xl space-y-6 px-6 pt-12">
@@ -203,8 +203,8 @@ function Services() {
             Not sure which service fits?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mist/70">
-            Tell us the pieces, weight and deadline — we will recommend economy, express or next
-            flight out and quote it the same day.
+            Tell us the pieces, weight and deadline — we will recommend sea, air, road or same-day
+            and quote it the same day.
           </p>
           <Link
             to="/contact"

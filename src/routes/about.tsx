@@ -7,17 +7,17 @@ import { credentials, hubs, leadership, stats } from "@/data/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Velora Air — Independent UK Airfreight Forwarder" },
+      { title: "About LogiEdge Consulting — UK Air, Sea & Road Forwarder" },
       {
         name: "description",
         content:
-          "Velora Air has forwarded cargo from Heathrow since 2009. IATA and BIFA members, AEO(F) compliant, with an ETSF bonded warehouse and 24/7 operations desk.",
+          "LogiEdge Consulting has forwarded cargo from the UK since 2009. IATA and BIFA members, AEO(F) compliant, with air, sea, road, local delivery and an ETSF bonded warehouse.",
       },
-      { property: "og:title", content: "About Velora Air" },
+      { property: "og:title", content: "About LogiEdge Consulting" },
       {
         property: "og:description",
         content:
-          "An independent Heathrow freight forwarder with in-house customs brokerage and a 24/7 operations desk.",
+          "An independent UK freight forwarder for air, sea, road and local delivery, with in-house customs and a 24/7 operations desk.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,12 +27,12 @@ export const Route = createFileRoute("/about")({
 });
 
 const timeline = [
-  { y: "2009", t: "Founded at Heathrow", c: "Velora Air opens a two-desk cargo office on Shoreham Road with a single van." },
-  { y: "2013", t: "IATA & BIFA accredited", c: "Direct airline agreements let us build and tender our own cargo airside." },
-  { y: "2017", t: "Birmingham & Manchester", c: "Regional cargo desks open, giving clients three UK gateways on one account." },
-  { y: "2020", t: "AEO(F) and in-house brokerage", c: "Customs team brought in-house, filing import and export entries directly." },
-  { y: "2023", t: "ETSF warehouse", c: "35,000 sq ft of temporary storage approved for uncleared airfreight." },
-  { y: "2026", t: "140 countries", c: "Overseas partner network now covers every major trade lane worldwide." },
+  { y: "2009", t: "Founded at Heathrow", c: "LogiEdge opens a two-desk cargo office on Shoreham Road with a single van — air first, but never air only." },
+  { y: "2013", t: "IATA & BIFA accredited", c: "Direct airline agreements plus BIFA membership for ocean and overland as the product mix grows." },
+  { y: "2017", t: "Birmingham & Manchester", c: "Regional desks open, giving clients airport, road and warehouse coverage on one account." },
+  { y: "2020", t: "AEO(F) and in-house brokerage", c: "Customs team brought in-house, filing CDS at airports and the deep-sea ports." },
+  { y: "2023", t: "ETSF warehouse & sea desk", c: "35,000 sq ft of inland temporary storage, FCL/LCL programmes and port haulage under the same roof." },
+  { y: "2026", t: "140 countries, four modes", c: "Partner network covering air, sea, road and last-mile on every major trade lane worldwide." },
 ];
 
 const values = [
@@ -43,10 +43,10 @@ const values = [
 ];
 
 const facilities = [
-  { t: "ETSF bonded warehouse", c: "35,000 sq ft temporary storage with racking, build-up bays and CCTV." },
-  { t: "Screening suite", c: "Known-consignor and unknown cargo screening before airline tender." },
-  { t: "Courier fleet", c: "85 vans and onboard couriers covering London, Midlands and North West." },
-  { t: "24/7 control room", c: "Flight monitoring, exception handling and customer updates through the night." },
+  { t: "ETSF bonded warehouse", c: "35,000 sq ft temporary storage with racking, container stuffing and airline build-up." },
+  { t: "Port & airport badges", c: "Inventory links into Felixstowe, Southampton, Gateway, Heathrow, BHX and MAN." },
+  { t: "Own collection fleet", c: "85 vans plus access to FTL, LTL, reefer and low-loader capacity nationwide." },
+  { t: "24/7 control room", c: "Flight, vessel and truck monitoring with exception handling through the night." },
 ];
 
 function About() {
@@ -54,8 +54,8 @@ function About() {
     <div>
       <PageHero
         eyebrow="About us"
-        title="Seventeen years of getting freight onto the right aircraft."
-        copy="We are an independent freight forwarder and courier company based at Heathrow, with cargo desks at Birmingham and Manchester. Small enough to know your shipment by name, accredited enough to handle anything on the manifest."
+        title="Seventeen years of putting freight on the right mode."
+        copy="We are an independent freight forwarder based at Heathrow, with desks at Birmingham and Manchester and working relationships at the UK's deep-sea ports. Small enough to know your shipment by name, accredited enough to handle air, sea, road and local delivery on one file."
       />
 
       <section className="mx-auto max-w-7xl px-6 pt-12">
@@ -65,14 +65,15 @@ function About() {
               One team from booking to proof of delivery.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-ink/70">
-              Most forwarders hand your cargo between three companies before it reaches the aircraft.
-              We run our own collection fleet, our own build-up and screening, and our own customs
-              brokerage — so when something changes, one team already has the file open.
+              Most forwarders hand your cargo between three companies before it reaches a gateway.
+              We run our own collection fleet, our own warehouse and screening, and our own customs
+              brokerage — so when a vessel rolls or a truck misses a slot, one team already has the
+              file open.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink/70">
               That structure is why we can commit to a 60-minute London collection, why our entries
-              go onto CDS the same hour, and why urgent aerospace and pharma clients keep us on
-              standby around the clock.
+              go onto CDS the same hour, and why aerospace, retail import and manufacturing clients
+              keep us on standby around the clock.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {stats.map((s) => (
@@ -85,7 +86,7 @@ function About() {
           </div>
           <img
             src={opsTeam}
-            alt="Velora Air operations team monitoring flight and shipment screens"
+            alt="LogiEdge Consulting operations team monitoring air, sea and road shipments"
             width={1600}
             height={1000}
             loading="lazy"
@@ -112,7 +113,7 @@ function About() {
 
       <section className="mx-auto max-w-7xl px-6 pt-16">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-blue">
-          UK desks
+          UK network
         </span>
         <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand">
           Where we operate
@@ -137,7 +138,7 @@ function About() {
         <div className="glass grid gap-8 rounded-3xl border border-white/60 p-8 shadow-[var(--shadow-soft)] lg:grid-cols-2 lg:items-center">
           <img
             src={warehouse}
-            alt="Airside bonded warehouse with staff scanning air cargo pallets"
+            alt="Bonded warehouse with staff preparing freight for air, sea and road"
             width={1600}
             height={1000}
             loading="lazy"

@@ -73,7 +73,7 @@ async function resendSend(payload: Record<string, unknown>, apiKey: string) {
 }
 
 export const sendQuoteRequest = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => quoteInput.parse(data))
+  .validator((data: unknown) => quoteInput.parse(data))
   .handler(async ({ data }) => {
     const apiKey = process.env["RESEND_API_KEY"];
     if (!apiKey) throw new Error("Email service is not configured.");
@@ -112,7 +112,7 @@ export const sendQuoteRequest = createServerFn({ method: "POST" })
 
     if (!internal.ok) {
       console.error(`Resend send failed [${internal.status}]: ${internal.body}`);
-      throw new Error(`Email could not be sent [${internal.status}]`);
+      throw new Error("Email could not be sent. Please try again or call the ops desk.");
     }
 
     // Courtesy acknowledgement to the customer. Requires a verified sending

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +8,7 @@ import { sileo } from "sileo";
 import type { ReactNode } from "react";
 import { PageHero } from "@/components/site/SiteShell";
 import { brand } from "@/data/site";
+import { sendQuoteRequest } from "@/lib/quote.functions";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/contact")({
@@ -67,17 +69,27 @@ function isValidPhone(value: string) {
 }
 
 const quoteSchema = z.object({
-  company: z.string().trim(),
-  contactName: z.string().trim().min(2, "Enter a contact name."),
-  email: z.string().trim().min(1, "Enter your email.").email("Enter a valid email address."),
+  company: z.string().trim().max(120, "Keep the company name under 120 characters."),
+  contactName: z
+    .string()
+    .trim()
+    .min(2, "Enter a contact name.")
+    .max(120, "Keep the contact name under 120 characters."),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Enter your email.")
+    .email("Enter a valid email address.")
+    .max(160, "Keep the email under 160 characters."),
   phone: z
     .string()
     .trim()
+    .max(40, "Keep the phone number under 40 characters.")
     .refine((value) => value === "" || isValidPhone(value), "Enter a valid phone number."),
-  origin: z.string().trim(),
-  destination: z.string().trim(),
-  mode: z.string(),
-  details: z.string().trim(),
+  origin: z.string().trim().max(160, "Keep the origin under 160 characters."),
+  destination: z.string().trim().max(160, "Keep the destination under 160 characters."),
+  mode: z.string().max(80),
+  details: z.string().trim().max(4000, "Keep shipment details under 4000 characters."),
 });
 
 type QuoteFormValues = z.infer<typeof quoteSchema>;
@@ -93,41 +105,6 @@ const emptyQuote: QuoteFormValues = {
   details: "",
 };
 
-function sendQuoteEmail(values: QuoteFormValues) {
-  return new Promise<QuoteFormValues>((resolve, reject) => {
-    window.setTimeout(() => {
-      try {
-        const subject = encodeURIComponent(
-          values.mode ? `Quote request — ${values.mode}` : "Quote request",
-        );
-        const body = encodeURIComponent(
-          [
-            values.company ? `Company: ${values.company}` : null,
-            `Contact: ${values.contactName}`,
-            `Email: ${values.email}`,
-            values.phone ? `Phone: ${values.phone}` : null,
-            values.origin ? `Origin: ${values.origin}` : null,
-            values.destination ? `Destination: ${values.destination}` : null,
-            values.mode ? `Mode: ${values.mode}` : null,
-            values.details ? `\n${values.details}` : null,
-          ]
-            .filter(Boolean)
-            .join("\n"),
-        );
-        const link = document.createElement("a");
-        link.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        resolve(values);
-      } catch (error) {
-        reject(error);
-      }
-    }, 800);
-  });
-}
-
 const fieldClass = (invalid?: boolean) =>
   cn(
     "w-full rounded-xl border bg-white/60 px-4 py-3 text-sm text-brand outline-none transition placeholder:text-ink/45 focus:border-accent-blue",
@@ -135,6 +112,7 @@ const fieldClass = (invalid?: boolean) =>
   );
 
 function QuoteForm() {
+  const sendQuote = useServerFn(sendQuoteRequest);
   const {
     register,
     handleSubmit,
@@ -149,15 +127,17 @@ function QuoteForm() {
 
   const onValid = async (values: QuoteFormValues) => {
     try {
-      await sileo.promise(sendQuoteEmail(values), {
+      await sileo.promise(sendQuote({ data: values }), {
         loading: {
           title: "Sending quote request",
-          description: `Emailing ${brand.email}`,
+          description: "Submitting your enquiry to the ops desk.",
         },
-        success: {
+        success: (result) => ({
           title: "Quote request sent",
-          description: "The desk will reply the same working day.",
-        },
+          description: result.acknowledged
+            ? "We've emailed you a copy. The desk will reply the same working day."
+            : "The desk will reply the same working day.",
+        }),
         error: {
           title: "Could not send",
           description: "Please try again or call the ops desk.",

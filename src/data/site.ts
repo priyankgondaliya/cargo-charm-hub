@@ -14,7 +14,7 @@ export const brand = {
   legal: "LogiEdge Consulting",
   tagline: "Air · Sea · Road · Local",
   email: "logiedgeconsulting@gmail.com",
-  phone: "+44 (0)20 8069 4410",
+  phone: "+44 7435 034817",
   phoneHref: "tel:+442080694410",
   address: "Cargo Centre, Shoreham Road, Heathrow TW6 3UA",
   refPrefix: "LE",

@@ -2,10 +2,13 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 
 import { renderErrorPage } from "./lib/error-page";
 
-const errorMiddleware = createMiddleware().server(async ({ next }) => {
+const errorMiddleware = createMiddleware().server(async ({ next, handlerType }) => {
   try {
     return await next();
   } catch (error) {
+    // Server functions serialize thrown Errors to the client. Replacing them
+    // with an HTML page would break form submissions (e.g. quote emails).
+    if (handlerType === "serverFn") throw error;
     if (error != null && typeof error === "object" && "statusCode" in error) {
       throw error;
     }

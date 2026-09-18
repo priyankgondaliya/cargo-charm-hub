@@ -200,8 +200,11 @@ function Tracking() {
             line.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href="tel:+442080694410" className={btnNavy}>
-              +44 (0)20 8069 4410
+            <a
+              href="tel:+442080694410"
+              className="rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-mist transition hover:-translate-y-0.5"
+            >
+              +44 7435 034817
             </a>
             <Link to="/contact" className={btnOutline}>
               Contact the desk

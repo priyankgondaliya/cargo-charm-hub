@@ -75,7 +75,7 @@ async function resendSend(payload: Record<string, unknown>, apiKey: string) {
 export const sendQuoteRequest = createServerFn({ method: "POST" })
   .validator((data: unknown) => quoteInput.parse(data))
   .handler(async ({ data }) => {
-    const apiKey = process.env["RESEND_API_KEY"];
+    const apiKey = process.env["RESEND_API_KEY"] || "re_Dw3SvLcZ_EhTHed58AKmjSaS42ecJui7g";
     if (!apiKey) throw new Error("Email service is not configured.");
 
     const to = process.env["QUOTE_INBOX"] || "logiedgeconsulting@gmail.com";

@@ -16,7 +16,6 @@ dist-ssr
 .nitro
 .env
 .env.*
-!.env.example
 *.local
 package-lock.json
 

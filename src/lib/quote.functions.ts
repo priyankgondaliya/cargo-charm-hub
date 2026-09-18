@@ -52,7 +52,7 @@ function shell(title: string, intro: string, inner: string, footNote: string) {
           <p style="margin:0;font:400 12px/18px Arial,Helvetica,sans-serif;color:#8b99ae;">${footNote}</p>
         </td></tr>
         <tr><td style="background:#f2f6fb;padding:16px 28px;font:400 11px Arial,Helvetica,sans-serif;color:#8b99ae;">
-          ${BRAND} &middot; Cargo Centre, Shoreham Road, Heathrow TW6 3UA &middot; +44 (0)20 8069 4410
+          ${BRAND} &middot; Cargo Centre, Shoreham Road, Heathrow TW6 3UA &middot; +44 7435 034817
         </td></tr>
       </table>
     </td></tr>
@@ -127,7 +127,7 @@ export const sendQuoteRequest = createServerFn({ method: "POST" })
           `Thanks, ${escape(data.contactName.split(" ")[0] || data.contactName)}`,
           "Our operations desk has your enquiry and will come back with pricing and transit times the same working day. Here is what you sent us:",
           details,
-          "Need it urgently? Call the 24/7 ops desk on +44 (0)20 8069 4410.",
+          "Need it urgently? Call the 24/7 ops desk on +44 7435 034817.",
         ),
       },
       apiKey,

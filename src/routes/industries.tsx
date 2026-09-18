@@ -18,7 +18,7 @@ export const Route = createFileRoute("/industries")({
       {
         name: "description",
         content:
-          "Air, sea, road and local logistics for aerospace, pharmaceuticals, e-commerce, perishables, automotive, manufacturing and project cargo across the UK and worldwide.",
+          "Air, sea, road and local logistics for aerospace, pharmaceuticals, e-commerce, perishables, automotive, manufacturing and project cargo across all UK counties.",
       },
       { property: "og:title", content: "Industries — LogiEdge Consulting" },
       {

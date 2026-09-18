@@ -81,8 +81,8 @@ function Index() {
             </h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-navy-muted md:text-lg">
               {brand.name} is an independent UK forwarder. We do not just take cargo from A to B —
-              we design the lane around your business, clear it in-house and deliver door to door in
-              over 140 countries.
+              we design the lane around your business, clear it in-house and deliver door to door
+              across all UK counties.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link to="/contact" className={btnCta}>
@@ -350,14 +350,13 @@ function Index() {
       <Section tone="navy" className="navy-grid">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <Eyebrow light>Trade corridors</Eyebrow>
+            <Eyebrow light>UK County Network</Eyebrow>
             <SectionTitle light className="mt-3">
-              Lanes we tender every week.
+              Nationwide UK Logistics &amp; Regional Routes.
             </SectionTitle>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-navy-muted">
-            Scheduled ocean, air and road capacity on the corridors UK shippers use most — with
-            charters and dedicated trucks when the calendar gets tight.
+            Dedicated road freight, express courier, and regional trunking connecting all UK counties from our Southampton HQ and regional hubs.
           </p>
         </div>
         <div className="mt-8 overflow-hidden rounded-xl border border-white/10 bg-white/[0.03]">

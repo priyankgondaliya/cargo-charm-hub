@@ -39,7 +39,7 @@ const timeline = [
   {
     y: "2009",
     t: "Founded at Heathrow",
-    c: "LogiEdge opens a two-desk cargo office on Shoreham Road with a single van — air first, but never air only.",
+    c: "LogiEdge opens a two-desk cargo office on Cobden Ave with a single van — air first, but never air only.",
   },
   {
     y: "2013",
@@ -63,8 +63,8 @@ const timeline = [
   },
   {
     y: "2026",
-    t: "140 countries, four modes",
-    c: "Partner network covering air, sea, road and last-mile on every major trade lane worldwide.",
+    t: "All UK counties, four modes",
+    c: "Dedicated network covering air, sea, road and last-mile across all UK counties.",
   },
 ];
 

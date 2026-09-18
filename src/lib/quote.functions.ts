@@ -52,7 +52,7 @@ function shell(title: string, intro: string, inner: string, footNote: string) {
           <p style="margin:0;font:400 12px/18px Arial,Helvetica,sans-serif;color:#8b99ae;">${footNote}</p>
         </td></tr>
         <tr><td style="background:#f2f6fb;padding:16px 28px;font:400 11px Arial,Helvetica,sans-serif;color:#8b99ae;">
-          ${BRAND} &middot; Cargo Centre, Shoreham Road, Heathrow TW6 3UA &middot; +44 7435 034817
+          ${BRAND} &middot; Flat 14, 29 Cobden Ave, Southampton SO18 1FU &middot; +44 7435 034817
         </td></tr>
       </table>
     </td></tr>

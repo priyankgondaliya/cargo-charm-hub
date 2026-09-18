@@ -36,8 +36,8 @@ export const Route = createFileRoute("/contact")({
 
 const offices = [
   {
-    title: "Heathrow HQ",
-    lines: ["Cargo Centre, Shoreham Road", "Heathrow TW6 3UA", "Main ops, air cargo & brokerage"],
+    title: "Southampton HQ",
+    lines: ["Flat 14, 29 Cobden Ave", "Southampton SO18 1FU", "Main ops, freight & brokerage"],
   },
   {
     title: "Birmingham",
@@ -360,9 +360,9 @@ function Contact() {
                 </IconBadge>
                 <div>
                   <div className="font-display text-sm font-semibold text-navy">
-                    Cargo Centre, Shoreham Road
+                    Flat 14, 29 Cobden Ave
                   </div>
-                  <div className="mt-0.5 text-xs text-subtle">Heathrow TW6 3UA</div>
+                  <div className="mt-0.5 text-xs text-subtle">Southampton SO18 1FU</div>
                 </div>
               </div>
             </div>

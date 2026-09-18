@@ -1,22 +1,28 @@
 const hubs = [
-  { id: "uk", cx: 368, cy: 112, label: "UK" },
-  { id: "eu", cx: 410, cy: 128, label: "Europe" },
-  { id: "me", cx: 478, cy: 158, label: "Gulf" },
-  { id: "af", cx: 398, cy: 214, label: "W. Africa" },
-  { id: "in", cx: 538, cy: 176, label: "India" },
-  { id: "asean", cx: 612, cy: 204, label: "ASEAN" },
-  { id: "east", cx: 648, cy: 148, label: "Far East" },
-  { id: "us", cx: 168, cy: 138, label: "N. America" },
+  { id: "southampton", cx: 425, cy: 395, label: "Southampton (HQ)", isHQ: true },
+  { id: "london", cx: 470, cy: 365, label: "London & Home Counties" },
+  { id: "birmingham", cx: 405, cy: 295, label: "Birmingham (Midlands)" },
+  { id: "manchester", cx: 390, cy: 240, label: "Manchester (North West)" },
+  { id: "bristol", cx: 345, cy: 380, label: "Bristol & South West" },
+  { id: "cardiff", cx: 310, cy: 350, label: "Cardiff (Wales)" },
+  { id: "norwich", cx: 520, cy: 305, label: "East Anglia & Ports" },
+  { id: "leeds", cx: 435, cy: 215, label: "Leeds & Yorkshire" },
+  { id: "newcastle", cx: 430, cy: 160, label: "Newcastle & North East" },
+  { id: "edinburgh", cx: 405, cy: 120, label: "Edinburgh & Scotland" },
+  { id: "belfast", cx: 270, cy: 180, label: "Belfast (Northern Ireland)" },
 ] as const;
 
 const routes: [string, string][] = [
-  ["uk", "east"],
-  ["uk", "af"],
-  ["uk", "me"],
-  ["uk", "eu"],
-  ["uk", "in"],
-  ["uk", "us"],
-  ["uk", "asean"],
+  ["southampton", "london"],
+  ["southampton", "birmingham"],
+  ["southampton", "bristol"],
+  ["southampton", "cardiff"],
+  ["southampton", "norwich"],
+  ["southampton", "manchester"],
+  ["birmingham", "leeds"],
+  ["manchester", "newcastle"],
+  ["manchester", "edinburgh"],
+  ["manchester", "belfast"],
 ];
 
 function hub(id: string) {
@@ -25,41 +31,44 @@ function hub(id: string) {
 
 function arc(a: (typeof hubs)[number], b: (typeof hubs)[number]) {
   const mx = (a.cx + b.cx) / 2;
-  const my = (a.cy + b.cy) / 2 - Math.abs(b.cx - a.cx) * 0.18;
+  const my = (a.cy + b.cy) / 2 - Math.abs(b.cx - a.cx) * 0.12;
   return `M ${a.cx} ${a.cy} Q ${mx} ${my} ${b.cx} ${b.cy}`;
 }
 
 export function NetworkMap({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 800 320"
+      viewBox="0 0 760 480"
       className={className}
       role="img"
-      aria-label="Global logistics corridors from the United Kingdom"
+      aria-label="LogiEdge Consulting nationwide UK logistics coverage map across all UK counties"
     >
       <defs>
-        <pattern id="logiedge-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+        <pattern id="logiedge-uk-grid" width="24" height="24" patternUnits="userSpaceOnUse">
           <path
             d="M 24 0 L 0 0 0 24"
             fill="none"
-            stroke="rgba(170,183,196,0.18)"
+            stroke="rgba(170,183,196,0.15)"
             strokeWidth="0.6"
           />
         </pattern>
+        <radialGradient id="hq-pulse-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      <rect width="800" height="320" fill="url(#logiedge-grid)" />
 
-      {/* Simplified landmass silhouettes */}
-      <g fill="rgba(255,255,255,0.06)" stroke="rgba(170,183,196,0.22)" strokeWidth="0.8">
-        <path d="M118 92c28-18 62-22 96-8 18 8 22 24 10 38-16 18-48 22-74 14-22-6-42-22-32-44z" />
-        <path d="M214 78c46-28 96-18 128 14 18 18 8 42-14 52-36 16-86 8-116-18-18-16-16-32 2-48z" />
-        <path d="M348 78c22-16 48-10 58 8 8 16-2 28-18 34-22 8-44-2-50-18-4-12 2-18 10-24z" />
-        <path d="M372 122c18-8 38 2 46 22 10 26-4 58-22 78-16 18-40 22-52 8-14-16-4-48 8-72 6-12 12-28 20-36z" />
-        <path d="M448 128c34-8 58 10 70 36 10 22 2 40-16 46-28 8-58-10-70-32-10-18-4-42 16-50z" />
-        <path d="M520 118c48-6 86 18 108 52 16 24 8 46-14 52-40 10-88-8-112-38-18-22-10-60 18-66z" />
-        <path d="M132 168c40 4 48 28 36 48-12 18-40 22-58 8-16-12-14-32 4-44 8-6 12-14 18-12z" />
+      <rect width="760" height="480" fill="url(#logiedge-uk-grid)" />
+
+      {/* UK Map Silhouette (Great Britain & Ireland) */}
+      <g fill="rgba(255,255,255,0.06)" stroke="rgba(170,183,196,0.25)" strokeWidth="1">
+        {/* Mainland Great Britain */}
+        <path d="M 400 45 C 430 50 445 75 425 95 C 410 110 435 125 415 145 C 445 155 435 185 450 200 C 440 215 460 235 440 250 C 475 260 520 275 540 300 C 555 320 515 345 480 370 C 455 425 385 435 345 445 C 295 440 280 405 320 380 C 275 365 270 335 305 320 C 350 305 375 275 360 245 C 345 225 370 190 380 150 C 365 120 370 85 400 45 Z" />
+        {/* Northern Ireland & Ireland contour */}
+        <path d="M 265 150 C 295 155 300 185 285 210 C 260 240 220 220 225 190 C 220 170 245 150 265 150 Z" />
       </g>
 
+      {/* Logistics Routes */}
       {routes.map(([from, to]) => {
         const a = hub(from);
         const b = hub(to);
@@ -69,30 +78,46 @@ export function NetworkMap({ className = "" }: { className?: string }) {
             d={arc(a, b)}
             fill="none"
             stroke="#155EEF"
-            strokeOpacity="0.55"
-            strokeWidth="1.25"
+            strokeOpacity="0.65"
+            strokeWidth="1.5"
             strokeDasharray="5 7"
             className="route-dash"
           />
         );
       })}
 
-      {hubs.map((h) => (
-        <g key={h.id}>
-          <circle cx={h.cx} cy={h.cy} r="7" fill="#155EEF" fillOpacity="0.18" />
-          <circle cx={h.cx} cy={h.cy} r="3.2" fill={h.id === "uk" ? "#F59E0B" : "#155EEF"} />
-          <text
-            x={h.cx + 10}
-            y={h.cy - 8}
-            fill="#AAB7C4"
-            fontSize="10"
-            fontFamily="Inter, sans-serif"
-            letterSpacing="0.04em"
-          >
-            {h.label}
-          </text>
-        </g>
-      ))}
+      {/* Hub Pins & Labels */}
+      {hubs.map((h) => {
+        const isHQ = "isHQ" in h && h.isHQ;
+        return (
+          <g key={h.id}>
+            {isHQ ? (
+              <>
+                <circle cx={h.cx} cy={h.cy} r="18" fill="url(#hq-pulse-glow)" />
+                <circle cx={h.cx} cy={h.cy} r="8" fill="#F59E0B" fillOpacity="0.25" />
+                <circle cx={h.cx} cy={h.cy} r="4.5" fill="#F59E0B" />
+              </>
+            ) : (
+              <>
+                <circle cx={h.cx} cy={h.cy} r="7" fill="#155EEF" fillOpacity="0.2" />
+                <circle cx={h.cx} cy={h.cy} r="3" fill="#155EEF" />
+              </>
+            )}
+
+            <text
+              x={h.cx + (isHQ ? 12 : 9)}
+              y={h.cy + (isHQ ? 4 : 3)}
+              fill={isHQ ? "#FFFFFF" : "#AAB7C4"}
+              fontSize={isHQ ? "11" : "10"}
+              fontWeight={isHQ ? "700" : "500"}
+              fontFamily="Inter, sans-serif"
+              letterSpacing="0.03em"
+            >
+              {h.label}
+            </text>
+          </g>
+        );
+      })}
     </svg>
   );
 }

@@ -26,7 +26,7 @@ export const Route = createFileRoute("/tracking")({
       {
         property: "og:description",
         content:
-          "Live milestone tracking for LogiEdge Consulting consignments worldwide — air, sea and road.",
+          "Live milestone tracking for LogiEdge Consulting consignments across all UK counties — air, sea and road.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

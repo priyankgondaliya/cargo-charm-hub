@@ -16,7 +16,7 @@ export const brand = {
   email: "logiedgeconsulting@gmail.com",
   phone: "+44 7435 034817",
   phoneHref: "tel:+442080694410",
-  address: "Cargo Centre, Shoreham Road, Heathrow TW6 3UA",
+  address: "Flat 14, 29 Cobden Ave, Southampton SO18 1FU",
   refPrefix: "LE",
 };
 
@@ -137,7 +137,7 @@ export const hubs = [
     name: "Heathrow",
     code: "LHR",
     focus: "HQ, air cargo build-up and brokerage",
-    detail: "Shoreham Road cargo centre with 24/7 ops, screening and bonded storage for air consignments.",
+    detail: "Cargo centre with 24/7 ops, screening and bonded storage for air consignments.",
   },
   {
     name: "Birmingham",
@@ -172,12 +172,12 @@ export const hubs = [
 ];
 
 export const corridors = [
-  { from: "Felixstowe", to: "Far East & ASEAN", note: "Weekly FCL and LCL sailings" },
-  { from: "Southampton", to: "West Africa & Atlantic", note: "Ocean + RoRo capacity" },
-  { from: "Heathrow", to: "Gulf & Middle East", note: "Daily widebody air" },
-  { from: "Birmingham", to: "Central & Eastern Europe", note: "Road groupage and truck-air" },
-  { from: "UK ports", to: "Indian subcontinent", note: "FCL, LCL and air backup" },
-  { from: "Manchester", to: "North America", note: "Air express and ocean FCL" },
+  { from: "Southampton HQ", to: "London & Home Counties", note: "Dedicated 60-min express & courier" },
+  { from: "Southampton HQ", to: "West Country & Wales", note: "Daily pallet network & FTL road" },
+  { from: "Heathrow Hub", to: "Midlands & East Anglia", note: "Timed truck & depot feeder" },
+  { from: "Birmingham Hub", to: "North West & Yorkshire", note: "ETSF inland clearance & distribution" },
+  { from: "Manchester Hub", to: "Scotland & Borders", note: "Overnight trunks & express vans" },
+  { from: "Liverpool Port", to: "Northern Ireland", note: "Daily Irish Sea freight & delivery" },
 ];
 
 export const capabilities = [
@@ -258,7 +258,7 @@ export const credentials = [
 ];
 
 export const stats = [
-  { v: "140+", l: "Countries served" },
+  { v: "100%", l: "UK counties covered" },
   { v: "4", l: "Transport modes" },
   { v: "24/7", l: "Operations desk" },
   { v: "98.6%", l: "On-time performance" },
@@ -350,16 +350,16 @@ export const faqs = [
 ];
 
 export const lanes = [
-  "Heathrow → Dubai",
-  "Felixstowe → Shanghai",
-  "Birmingham → Rotterdam",
-  "Southampton → Lagos",
-  "Manchester → New York",
-  "London Gateway → Mumbai",
-  "UK road → Madrid",
-  "Heathrow → Singapore",
-  "Felixstowe → New York",
-  "Manchester → Hong Kong",
+  "Southampton → London",
+  "Birmingham → Manchester",
+  "Heathrow → Edinburgh",
+  "Southampton → Bristol",
+  "London → Leeds",
+  "Cardiff → Birmingham",
+  "Belfast → Glasgow",
+  "Southampton → Newcastle",
+  "Manchester → Liverpool",
+  "Heathrow → Oxford",
 ];
 
 export const leadership = [

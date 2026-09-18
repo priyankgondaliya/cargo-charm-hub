@@ -90,15 +90,15 @@ const values = [
 const facilities = [
   {
     t: "ETSF bonded warehouse",
-    c: "35,000 sq ft temporary storage with racking, container stuffing and airline build-up.",
+    c: "Flexible temporary storage with racking, container stuffing and regional build-up.",
   },
   {
     t: "Port & airport badges",
     c: "Inventory links into Felixstowe, Southampton, Gateway, Heathrow, BHX and MAN.",
   },
   {
-    t: "Own collection fleet",
-    c: "85 vans plus access to FTL, LTL, reefer and low-loader capacity nationwide.",
+    t: "Nationwide fleet access",
+    c: "Dedicated express transport plus access to FTL, LTL and courier capacity nationwide.",
   },
   {
     t: "24/7 control room",

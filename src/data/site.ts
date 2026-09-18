@@ -92,7 +92,7 @@ export const services = [
     icon: Warehouse,
     slug: "warehousing",
     title: "Warehousing & fulfilment",
-    copy: "35,000 sq ft of bonded and commercial storage with pick-and-pack, palletising, container stuffing and e-commerce fulfilment — connected to air, sea and road under one account.",
+    copy: "Flexible bonded and commercial storage with pick-and-pack, palletising, container stuffing and e-commerce fulfilment — connected to air, sea and road under one account.",
     points: ["ETSF bonded", "Pick & pack", "Container stuffing"],
   },
 ];
@@ -143,7 +143,7 @@ export const hubs = [
     name: "Birmingham",
     code: "BHX",
     focus: "Midlands warehouse, road hub and ETSF",
-    detail: "35,000 sq ft inland clearance, pick-and-pack and same-day collections across the industrial Midlands.",
+    detail: "Inland clearance, pick-and-pack and same-day collections across the industrial Midlands.",
   },
   {
     name: "Manchester",

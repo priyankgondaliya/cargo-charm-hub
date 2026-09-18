@@ -1,15 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, ShieldCheck, Globe2, Boxes, Leaf } from "lucide-react";
 import airCargo from "@/assets/air-cargo.jpg";
-import courierVan from "@/assets/courier-van.jpg";
-import warehouse from "@/assets/warehouse.jpg";
 import {
   brand,
   modes,
   services,
   stats,
-  steps,
-  testimonials,
   faqs,
   lanes,
   industries,
@@ -230,41 +226,6 @@ function Index() {
         </div>
       </Section>
 
-      <Section tone="mist">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <img
-            src={courierVan}
-            alt="Courier loading parcels into a delivery van on a UK street"
-            width={1600}
-            height={1000}
-            loading="lazy"
-            className="aspect-[16/10] w-full rounded-xl object-cover"
-          />
-          <div>
-            <Eyebrow>Local & last mile</Eyebrow>
-            <SectionTitle className="mt-4">The first and last mile, run by us.</SectionTitle>
-            <Body className="mt-4">
-              International freight only works if someone collects it and someone delivers it. Our
-              own vans cover same-day London, nationwide next-day and timed store drops — so one
-              company is accountable from your dock to the consignee&apos;s.
-            </Body>
-            <div className="mt-8 grid grid-cols-3 gap-4 border-t border-line pt-6">
-              <div>
-                <div className="font-display text-3xl font-extrabold text-navy">60</div>
-                <div className="mt-1 text-xs font-medium text-subtle">Minute collection</div>
-              </div>
-              <div>
-                <div className="font-display text-3xl font-extrabold text-navy">85</div>
-                <div className="mt-1 text-xs font-medium text-subtle">Vans &amp; couriers</div>
-              </div>
-              <div>
-                <div className="font-display text-3xl font-extrabold text-navy">24/7</div>
-                <div className="mt-1 text-xs font-medium text-subtle">Ops desk</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
 
       <Section tone="navy" className="navy-grid">
         <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -327,25 +288,6 @@ function Index() {
         </div>
       </Section>
 
-      <Section tone="mist">
-        <SectionTitle>How a shipment moves</SectionTitle>
-        <Body className="mt-3">
-          Four clear stages from rate to POD — whether the cargo flies, sails or rolls — with live
-          status your customers can follow.
-        </Body>
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <div key={s.n} className="relative">
-              <div className="font-display text-sm font-bold text-accent-blue">{s.n}</div>
-              {i < steps.length - 1 && (
-                <div className="absolute top-2 left-10 hidden h-px w-[calc(100%-1.5rem)] bg-line lg:block" />
-              )}
-              <h3 className="mt-3 font-display text-lg font-bold text-navy">{s.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-subtle">{s.c}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
 
       <Section tone="navy" className="navy-grid">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -391,34 +333,6 @@ function Index() {
         </div>
       </Section>
 
-      <Section tone="mist">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <Eyebrow>Warehousing & fulfilment</Eyebrow>
-            <SectionTitle className="mt-4">35,000 sq ft, inland of the ports.</SectionTitle>
-            <Body className="mt-4">
-              ETSF temporary storage, pick-and-pack, container stuffing and airline build-up under
-              the same roof as the ops desk. Pull boxes off the quay, clear inland and feed stores
-              without another contractor in the middle.
-            </Body>
-            <Link
-              to="/services"
-              hash="warehousing"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-blue hover:text-navy"
-            >
-              Explore warehousing <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <img
-            src={warehouse}
-            alt="Warehouse team palletising freight for onward air, sea and road distribution"
-            width={1600}
-            height={1000}
-            loading="lazy"
-            className="aspect-[16/10] w-full rounded-xl object-cover"
-          />
-        </div>
-      </Section>
 
       <Section tone="white">
         <Eyebrow>Service levels</Eyebrow>
@@ -528,23 +442,6 @@ function Index() {
         </Link>
       </CtaBand>
 
-      <Section tone="mist">
-        <Eyebrow>What clients say</Eyebrow>
-        <SectionTitle className="mt-3">Trusted on the tightest deadlines.</SectionTitle>
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((t) => (
-            <figure key={t.name} className="flex flex-col border-t border-line pt-5">
-              <blockquote className="flex-1 text-sm leading-relaxed text-ink">
-                “{t.quote}”
-              </blockquote>
-              <figcaption className="mt-5">
-                <div className="font-display text-sm font-semibold text-navy">{t.name}</div>
-                <div className="mt-0.5 text-xs text-subtle">{t.role}</div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </Section>
 
       <Section tone="white">
         <SectionTitle>Questions, answered</SectionTitle>
